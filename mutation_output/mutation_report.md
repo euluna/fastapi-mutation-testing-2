@@ -1,14 +1,14 @@
 # Encoders.py Mutation Testing Report
 
-**Total mutants generated:** 143
+**Total mutants generated:** 149
 
 ## Mutation Testing Results
 
-- **Killed:** 134 (93%)
-- **Survived:** 9 (6%)
+- **Killed:** 134 (89%)
+- **Survived:** 15 (10%)
 - **Errors:** 0
 - **Timeouts:** 0
-- **Mutation Score:** 93%
+- **Mutation Score:** 89%
 
 ## Mutation Operators Summary
 
@@ -18,7 +18,7 @@
 | CDL | 15 | 9 | 6 | Constant Replacement |
 | DCI | 2 | 2 | 0 | Dictionary/Container Operations |
 | FCR | 12 | 12 | 0 | Function Call Replacement |
-| IOD | 3 | 3 | 0 | In/Not in Operator |
+| IOD | 9 | 3 | 6 | In/Not in Operator |
 | LCR | 9 | 7 | 2 | Logical Connector Replacement |
 | MSI | 10 | 10 | 0 | Method Call Modification |
 | RIL | 48 | 48 | 0 | Return Statement Mutation |
@@ -30,10 +30,10 @@
 
 | Routine | Total | Killed | Survived |
 |---------|-------|--------|----------|
-| decimal_encoder | 14 | 14 | 0 |
+| decimal_encoder | 15 | 14 | 1 |
 | generate_encoders_by_class_tuples | 6 | 6 | 0 |
 | isoformat | 3 | 3 | 0 |
-| jsonable_encoder | 120 | 111 | 9 |
+| jsonable_encoder | 125 | 111 | 14 |
 
 ## Survived Mutants (For Analysis)
 
@@ -219,6 +219,26 @@ and (value is not None and not exclude_none)
 
 ---
 
+### Mutant #111 - IOD
+
+**Routine:** `decimal_encoder`  
+**Line:** 48  
+**Description:** Replace 'in' with 'not in' at line 48
+
+**Original:**
+```python
+results in failed round-tripping between encode and parse.
+```
+
+**Mutated:**
+```python
+results not in failed round-tripping between encode and parse.
+```
+
+**Analysis Required:** Determine if this is an equivalent mutant or if a new test is needed.
+
+---
+
 
 ## All Mutants (Detailed)
 
@@ -246,23 +266,26 @@ encoders_by_class_tuples[encoder] -= (type_,)
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -292,23 +315,26 @@ allowed_keys += set(exclude)
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -338,23 +364,26 @@ if isinstance(exponent, int) and exponent > 0:
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -384,23 +413,26 @@ if include is not not None and not isinstance(include, (set, dict)):
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -430,23 +462,26 @@ if include is None and not isinstance(include, (set, dict)):
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -476,23 +511,26 @@ if exclude is not not None and not isinstance(exclude, (set, dict)):
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -522,23 +560,26 @@ if exclude is None and not isinstance(exclude, (set, dict)):
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -568,23 +609,26 @@ if include is not not None:
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -614,23 +658,26 @@ if include is None:
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -660,23 +707,26 @@ if exclude is not not None:
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -706,23 +756,26 @@ if exclude is None:
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -752,23 +805,26 @@ and (value is not not None or not exclude_none)
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -798,12 +854,12 @@ and (value is None or not exclude_none)
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 24 items
 
 tests/test_jsonable_encoder.py::test_encode_dict PASSED                  [  4%]
@@ -813,7 +869,8 @@ tests/test_jsonable_encoder.py::test_encode_dictable PASSED              [ 16%]
 tests/test_jsonable_encoder.py::test_encode_dataclass PASSED             [ 20%]
 tests/test_jsonable_encoder.py::test_encode_unsupported PASSED           [ 25%]
 tests/test_jsonable_encoder.py::test_encode_custom_json_encoders_model_pydanticv2 PASSED [ 29%]
-tests/test_jsonable_encoder.py::test_json
+tests/test_jsonable_encoder.py::test_json_encoder_error_with_pydanticv1 PASSED [ 33%]
+tests/test_jsonable_encoder.py
 ```
 </details>
 
@@ -843,23 +900,26 @@ if isinstance(exponent, int) or exponent >= 0:
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -889,23 +949,26 @@ custom_encoder = custom_encoder and {}
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -935,23 +998,26 @@ if include is not None or not isinstance(include, (set, dict)):
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -981,23 +1047,26 @@ if exclude is not None or not isinstance(exclude, (set, dict)):
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -1027,12 +1096,12 @@ and (not isinstance(key, str))
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 24 items
 
 tests/test_jsonable_encoder.py::test_encode_dict PASSED                  [  4%]
@@ -1042,7 +1111,8 @@ tests/test_jsonable_encoder.py::test_encode_dictable PASSED              [ 16%]
 tests/test_jsonable_encoder.py::test_encode_dataclass PASSED             [ 20%]
 tests/test_jsonable_encoder.py::test_encode_unsupported PASSED           [ 25%]
 tests/test_jsonable_encoder.py::test_encode_custom_json_encoders_model_pydanticv2 PASSED [ 29%]
-tests/test_jsonable_encoder.py::test_json
+tests/test_jsonable_encoder.py::test_json_encoder_error_with_pydanticv1 PASSED [ 33%]
+tests/test_jsonable_encoder.py
 ```
 </details>
 
@@ -1072,20 +1142,20 @@ and (not key.startswith("_sa"))
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 24 items
 
 tests/test_jsonable_encoder.py::test_encode_dict FAILED                  [  4%]
 
-================================== FAILURES ===================================
-______________________________ test_encode_dict _______________________________
-tests\test_jsonable_encoder.py:77: in test_encode_dict
-    assert jsonable_encoder(pet) == {"name": "Firulais", "owner": {"name": "Foo"}}
+=================================== FAILURES ===================================
+_______________________________ test_encode_dict _______________________________
+C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2\tests\test_jsonable_encoder.py:77: in test_encode_dict
+    ???
 E   AssertionError: assert {} == {'name': 'Fir...name': 'Foo'}}
 E     
 E     Right contains 2 more items:
@@ -1095,7 +1165,8 @@ E     Full diff:
 E     + {}
 E     - {...
 E     
-E     ...Full output truncat
+E     ...Full output truncated (5 lines hidden), use '-vv' to show
+=========================== short test summary info ===
 ```
 </details>
 
@@ -1125,20 +1196,20 @@ or (value is not None or not exclude_none)
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 24 items
 
 tests/test_jsonable_encoder.py::test_encode_dict FAILED                  [  4%]
 
-================================== FAILURES ===================================
-______________________________ test_encode_dict _______________________________
-tests\test_jsonable_encoder.py:78: in test_encode_dict
-    assert jsonable_encoder(pet, include={"name"}) == {"name": "Firulais"}
+=================================== FAILURES ===================================
+_______________________________ test_encode_dict _______________________________
+C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2\tests\test_jsonable_encoder.py:78: in test_encode_dict
+    ???
 E   AssertionError: assert {'name': 'Fir...name': 'Foo'}} == {'name': 'Firulais'}
 E     
 E     Omitting 1 identical items, use -vv to show
@@ -1148,7 +1219,8 @@ E
 E     Full diff:
 E       {...
 E     
-E
+E     ...Full output truncated (5 lines hidden), use '-vv' to show
+====================
 ```
 </details>
 
@@ -1178,12 +1250,12 @@ and (value is not None and not exclude_none)
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 24 items
 
 tests/test_jsonable_encoder.py::test_encode_dict PASSED                  [  4%]
@@ -1193,7 +1265,8 @@ tests/test_jsonable_encoder.py::test_encode_dictable PASSED              [ 16%]
 tests/test_jsonable_encoder.py::test_encode_dataclass PASSED             [ 20%]
 tests/test_jsonable_encoder.py::test_encode_unsupported PASSED           [ 25%]
 tests/test_jsonable_encoder.py::test_encode_custom_json_encoders_model_pydanticv2 PASSED [ 29%]
-tests/test_jsonable_encoder.py::test_json
+tests/test_jsonable_encoder.py::test_json_encoder_error_with_pydanticv1 PASSED [ 33%]
+tests/test_jsonable_encoder.py
 ```
 </details>
 
@@ -1223,20 +1296,20 @@ or key in allowed_keys
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 24 items
 
 tests/test_jsonable_encoder.py::test_encode_dict FAILED                  [  4%]
 
-================================== FAILURES ===================================
-______________________________ test_encode_dict _______________________________
-tests\test_jsonable_encoder.py:78: in test_encode_dict
-    assert jsonable_encoder(pet, include={"name"}) == {"name": "Firulais"}
+=================================== FAILURES ===================================
+_______________________________ test_encode_dict _______________________________
+C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2\tests\test_jsonable_encoder.py:78: in test_encode_dict
+    ???
 E   AssertionError: assert {'name': 'Fir...name': 'Foo'}} == {'name': 'Firulais'}
 E     
 E     Omitting 1 identical items, use -vv to show
@@ -1246,7 +1319,8 @@ E
 E     Full diff:
 E       {...
 E     
-E
+E     ...Full output truncated (5 lines hidden), use '-vv' to show
+====================
 ```
 </details>
 
@@ -1276,23 +1350,26 @@ if isinstance(exponent, int) and exponent >= 1:
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -1322,20 +1399,20 @@ _______________ ERROR collecting tests/test_jsonable_encoder.py _______________
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 24 items
 
 tests/test_jsonable_encoder.py::test_encode_dict FAILED                  [  4%]
 
-================================== FAILURES ===================================
-______________________________ test_encode_dict _______________________________
-tests\test_jsonable_encoder.py:77: in test_encode_dict
-    assert jsonable_encoder(pet) == {"name": "Firulais", "owner": {"name": "Foo"}}
+=================================== FAILURES ===================================
+_______________________________ test_encode_dict _______________________________
+C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2\tests\test_jsonable_encoder.py:77: in test_encode_dict
+    ???
 E   AssertionError: assert {} == {'name': 'Fir...name': 'Foo'}}
 E     
 E     Right contains 2 more items:
@@ -1345,7 +1422,8 @@ E     Full diff:
 E     + {}
 E     - {...
 E     
-E     ...Full output truncat
+E     ...Full output truncated (5 lines hidden), use '-vv' to show
+=========================== short test summary info ===
 ```
 </details>
 
@@ -1375,12 +1453,12 @@ E     ...Full output truncat
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 24 items
 
 tests/test_jsonable_encoder.py::test_encode_dict PASSED                  [  4%]
@@ -1390,7 +1468,8 @@ tests/test_jsonable_encoder.py::test_encode_dictable PASSED              [ 16%]
 tests/test_jsonable_encoder.py::test_encode_dataclass PASSED             [ 20%]
 tests/test_jsonable_encoder.py::test_encode_unsupported PASSED           [ 25%]
 tests/test_jsonable_encoder.py::test_encode_custom_json_encoders_model_pydanticv2 PASSED [ 29%]
-tests/test_jsonable_encoder.py::test_json
+tests/test_jsonable_encoder.py::test_json_encoder_error_with_pydanticv1 PASSED [ 33%]
+tests/test_jsonable_encoder.py
 ```
 </details>
 
@@ -1420,12 +1499,12 @@ tests/test_jsonable_encoder.py::test_json
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 24 items
 
 tests/test_jsonable_encoder.py::test_encode_dict PASSED                  [  4%]
@@ -1435,7 +1514,8 @@ tests/test_jsonable_encoder.py::test_encode_dictable PASSED              [ 16%]
 tests/test_jsonable_encoder.py::test_encode_dataclass PASSED             [ 20%]
 tests/test_jsonable_encoder.py::test_encode_unsupported PASSED           [ 25%]
 tests/test_jsonable_encoder.py::test_encode_custom_json_encoders_model_pydanticv2 PASSED [ 29%]
-tests/test_jsonable_encoder.py::test_json
+tests/test_jsonable_encoder.py::test_json_encoder_error_with_pydanticv1 PASSED [ 33%]
+tests/test_jsonable_encoder.py
 ```
 </details>
 
@@ -1465,12 +1545,12 @@ tests/test_jsonable_encoder.py::test_json
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 24 items
 
 tests/test_jsonable_encoder.py::test_encode_dict PASSED                  [  4%]
@@ -1480,7 +1560,8 @@ tests/test_jsonable_encoder.py::test_encode_dictable PASSED              [ 16%]
 tests/test_jsonable_encoder.py::test_encode_dataclass PASSED             [ 20%]
 tests/test_jsonable_encoder.py::test_encode_unsupported PASSED           [ 25%]
 tests/test_jsonable_encoder.py::test_encode_custom_json_encoders_model_pydanticv2 PASSED [ 29%]
-tests/test_jsonable_encoder.py::test_json
+tests/test_jsonable_encoder.py::test_json_encoder_error_with_pydanticv1 PASSED [ 33%]
+tests/test_jsonable_encoder.py
 ```
 </details>
 
@@ -1510,12 +1591,12 @@ tests/test_jsonable_encoder.py::test_json
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 24 items
 
 tests/test_jsonable_encoder.py::test_encode_dict PASSED                  [  4%]
@@ -1525,7 +1606,8 @@ tests/test_jsonable_encoder.py::test_encode_dictable PASSED              [ 16%]
 tests/test_jsonable_encoder.py::test_encode_dataclass PASSED             [ 20%]
 tests/test_jsonable_encoder.py::test_encode_unsupported PASSED           [ 25%]
 tests/test_jsonable_encoder.py::test_encode_custom_json_encoders_model_pydanticv2 PASSED [ 29%]
-tests/test_jsonable_encoder.py::test_json
+tests/test_jsonable_encoder.py::test_json_encoder_error_with_pydanticv1 PASSED [ 33%]
+tests/test_jsonable_encoder.py
 ```
 </details>
 
@@ -1555,12 +1637,12 @@ tests/test_jsonable_encoder.py::test_json
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 24 items
 
 tests/test_jsonable_encoder.py::test_encode_dict PASSED                  [  4%]
@@ -1570,7 +1652,8 @@ tests/test_jsonable_encoder.py::test_encode_dictable PASSED              [ 16%]
 tests/test_jsonable_encoder.py::test_encode_dataclass PASSED             [ 20%]
 tests/test_jsonable_encoder.py::test_encode_unsupported PASSED           [ 25%]
 tests/test_jsonable_encoder.py::test_encode_custom_json_encoders_model_pydanticv2 PASSED [ 29%]
-tests/test_jsonable_encoder.py::test_json
+tests/test_jsonable_encoder.py::test_json_encoder_error_with_pydanticv1 PASSED [ 33%]
+tests/test_jsonable_encoder.py
 ```
 </details>
 
@@ -1600,12 +1683,12 @@ tests/test_jsonable_encoder.py::test_json
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 24 items
 
 tests/test_jsonable_encoder.py::test_encode_dict PASSED                  [  4%]
@@ -1615,7 +1698,8 @@ tests/test_jsonable_encoder.py::test_encode_dictable PASSED              [ 16%]
 tests/test_jsonable_encoder.py::test_encode_dataclass PASSED             [ 20%]
 tests/test_jsonable_encoder.py::test_encode_unsupported PASSED           [ 25%]
 tests/test_jsonable_encoder.py::test_encode_custom_json_encoders_model_pydanticv2 PASSED [ 29%]
-tests/test_jsonable_encoder.py::test_json
+tests/test_jsonable_encoder.py::test_json_encoder_error_with_pydanticv1 PASSED [ 33%]
+tests/test_jsonable_encoder.py
 ```
 </details>
 
@@ -1645,12 +1729,12 @@ tests/test_jsonable_encoder.py::test_json
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 24 items
 
 tests/test_jsonable_encoder.py::test_encode_dict PASSED                  [  4%]
@@ -1660,7 +1744,8 @@ tests/test_jsonable_encoder.py::test_encode_dictable PASSED              [ 16%]
 tests/test_jsonable_encoder.py::test_encode_dataclass PASSED             [ 20%]
 tests/test_jsonable_encoder.py::test_encode_unsupported PASSED           [ 25%]
 tests/test_jsonable_encoder.py::test_encode_custom_json_encoders_model_pydanticv2 PASSED [ 29%]
-tests/test_jsonable_encoder.py::test_json
+tests/test_jsonable_encoder.py::test_json_encoder_error_with_pydanticv1 PASSED [ 33%]
+tests/test_jsonable_encoder.py
 ```
 </details>
 
@@ -1690,12 +1775,12 @@ tests/test_jsonable_encoder.py::test_json
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 24 items
 
 tests/test_jsonable_encoder.py::test_encode_dict PASSED                  [  4%]
@@ -1705,7 +1790,8 @@ tests/test_jsonable_encoder.py::test_encode_dictable PASSED              [ 16%]
 tests/test_jsonable_encoder.py::test_encode_dataclass PASSED             [ 20%]
 tests/test_jsonable_encoder.py::test_encode_unsupported PASSED           [ 25%]
 tests/test_jsonable_encoder.py::test_encode_custom_json_encoders_model_pydanticv2 PASSED [ 29%]
-tests/test_jsonable_encoder.py::test_json
+tests/test_jsonable_encoder.py::test_json_encoder_error_with_pydanticv1 PASSED [ 33%]
+tests/test_jsonable_encoder.py
 ```
 </details>
 
@@ -1735,12 +1821,12 @@ tests/test_jsonable_encoder.py::test_json
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 24 items
 
 tests/test_jsonable_encoder.py::test_encode_dict PASSED                  [  4%]
@@ -1750,7 +1836,8 @@ tests/test_jsonable_encoder.py::test_encode_dictable PASSED              [ 16%]
 tests/test_jsonable_encoder.py::test_encode_dataclass PASSED             [ 20%]
 tests/test_jsonable_encoder.py::test_encode_unsupported PASSED           [ 25%]
 tests/test_jsonable_encoder.py::test_encode_custom_json_encoders_model_pydanticv2 PASSED [ 29%]
-tests/test_jsonable_encoder.py::test_json
+tests/test_jsonable_encoder.py::test_json_encoder_error_with_pydanticv1 PASSED [ 33%]
+tests/test_jsonable_encoder.py
 ```
 </details>
 
@@ -1780,12 +1867,12 @@ tests/test_jsonable_encoder.py::test_json
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 24 items
 
 tests/test_jsonable_encoder.py::test_encode_dict PASSED                  [  4%]
@@ -1795,7 +1882,8 @@ tests/test_jsonable_encoder.py::test_encode_dictable PASSED              [ 16%]
 tests/test_jsonable_encoder.py::test_encode_dataclass PASSED             [ 20%]
 tests/test_jsonable_encoder.py::test_encode_unsupported PASSED           [ 25%]
 tests/test_jsonable_encoder.py::test_encode_custom_json_encoders_model_pydanticv2 PASSED [ 29%]
-tests/test_jsonable_encoder.py::test_json
+tests/test_jsonable_encoder.py::test_json_encoder_error_with_pydanticv1 PASSED [ 33%]
+tests/test_jsonable_encoder.py
 ```
 </details>
 
@@ -1825,12 +1913,12 @@ tests/test_jsonable_encoder.py::test_json
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 24 items
 
 tests/test_jsonable_encoder.py::test_encode_dict PASSED                  [  4%]
@@ -1840,7 +1928,8 @@ tests/test_jsonable_encoder.py::test_encode_dictable PASSED              [ 16%]
 tests/test_jsonable_encoder.py::test_encode_dataclass PASSED             [ 20%]
 tests/test_jsonable_encoder.py::test_encode_unsupported PASSED           [ 25%]
 tests/test_jsonable_encoder.py::test_encode_custom_json_encoders_model_pydanticv2 PASSED [ 29%]
-tests/test_jsonable_encoder.py::test_json
+tests/test_jsonable_encoder.py::test_json_encoder_error_with_pydanticv1 PASSED [ 33%]
+tests/test_jsonable_encoder.py
 ```
 </details>
 
@@ -1870,12 +1959,12 @@ tests/test_jsonable_encoder.py::test_json
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 24 items
 
 tests/test_jsonable_encoder.py::test_encode_dict PASSED                  [  4%]
@@ -1885,7 +1974,8 @@ tests/test_jsonable_encoder.py::test_encode_dictable PASSED              [ 16%]
 tests/test_jsonable_encoder.py::test_encode_dataclass PASSED             [ 20%]
 tests/test_jsonable_encoder.py::test_encode_unsupported PASSED           [ 25%]
 tests/test_jsonable_encoder.py::test_encode_custom_json_encoders_model_pydanticv2 PASSED [ 29%]
-tests/test_jsonable_encoder.py::test_json
+tests/test_jsonable_encoder.py::test_json_encoder_error_with_pydanticv1 PASSED [ 33%]
+tests/test_jsonable_encoder.py
 ```
 </details>
 
@@ -1915,23 +2005,26 @@ return {}
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -1961,23 +2054,26 @@ if not (isinstance(exponent, int) and exponent >= 0):
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -2007,23 +2103,26 @@ if not (custom_encoder):
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -2053,23 +2152,26 @@ if not (type(obj) in custom_encoder):
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -2099,23 +2201,26 @@ if not (isinstance(obj, encoder_type)):
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -2145,23 +2250,26 @@ if not (isinstance(obj, BaseModel)):
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -2191,23 +2299,26 @@ if not (dataclasses.is_dataclass(obj)):
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -2237,23 +2348,26 @@ if not (isinstance(obj, Enum)):
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -2283,23 +2397,26 @@ if not (isinstance(obj, PurePath)):
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -2329,23 +2446,26 @@ if not (isinstance(obj, (str, int, float, type(None)))):
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -2375,23 +2495,26 @@ if not (isinstance(obj, PydanticUndefinedType)):
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -2421,23 +2544,26 @@ if not (isinstance(obj, dict)):
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -2467,23 +2593,26 @@ if not (isinstance(obj, (list, set, frozenset, GeneratorType, tuple, deque))):
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -2513,23 +2642,26 @@ if not (type(obj) in ENCODERS_BY_TYPE):
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -2559,23 +2691,26 @@ if not (isinstance(obj, classes_tuple)):
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -2605,23 +2740,26 @@ if not (is_pydantic_v1_model_instance(obj)):
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -2651,23 +2789,26 @@ return None
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -2697,23 +2838,26 @@ return {}
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -2743,23 +2887,26 @@ return []
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -2789,23 +2936,26 @@ return None
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -2835,23 +2985,26 @@ return {}
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -2881,23 +3034,26 @@ return []
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -2927,23 +3083,26 @@ return None
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -2973,23 +3132,26 @@ return {}
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -3019,23 +3181,26 @@ return []
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -3065,23 +3230,26 @@ return None
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -3111,23 +3279,26 @@ return {}
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -3157,23 +3328,26 @@ return []
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -3203,23 +3377,26 @@ return None
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -3249,23 +3426,26 @@ return {}
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -3295,23 +3475,26 @@ return []
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -3341,23 +3524,26 @@ return None
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -3387,23 +3573,26 @@ return {}
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -3433,23 +3622,26 @@ return []
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -3479,23 +3671,26 @@ return None
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -3525,23 +3720,26 @@ return {}
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -3571,23 +3769,26 @@ return []
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -3617,23 +3818,26 @@ return None
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -3663,23 +3867,26 @@ return {}
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -3709,23 +3916,26 @@ return []
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -3755,23 +3965,26 @@ return None
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -3801,23 +4014,26 @@ return {}
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -3847,23 +4063,26 @@ return []
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -3893,23 +4112,26 @@ return None
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -3939,23 +4161,26 @@ return {}
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -3985,23 +4210,26 @@ return []
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -4031,23 +4259,26 @@ return None
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -4077,23 +4308,26 @@ return {}
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -4123,23 +4357,26 @@ return []
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -4169,23 +4406,26 @@ return None
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -4215,23 +4455,26 @@ return {}
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -4261,23 +4504,26 @@ return []
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -4307,23 +4553,26 @@ return None
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -4353,23 +4602,26 @@ return {}
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -4399,23 +4651,26 @@ return []
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -4445,23 +4700,26 @@ return None
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -4491,23 +4749,26 @@ return {}
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -4537,23 +4798,26 @@ return []
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -4583,23 +4847,26 @@ return None
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -4629,23 +4896,26 @@ return {}
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -4675,23 +4945,26 @@ return []
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -4721,23 +4994,26 @@ return None
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -4767,23 +5043,26 @@ return {}
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -4813,23 +5092,26 @@ return []
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -4859,23 +5141,26 @@ for type_, encoder in type_encoder_map.keys():
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -4905,23 +5190,26 @@ for encoder_type, encoder_instance in custom_encoder.keys():
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -4951,23 +5239,26 @@ obj_dict = obj.model_dump_json(
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -4997,23 +5288,26 @@ obj_dict = dataclasses.astuple(obj)
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -5043,23 +5337,26 @@ allowed_keys = set(obj.values())
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -5089,23 +5386,26 @@ for key, value in obj.keys():
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -5135,23 +5435,26 @@ encoded_list.insert(0,
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -5181,23 +5484,26 @@ for encoder, classes_tuple in encoders_by_class_tuples.keys():
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -5227,23 +5533,26 @@ errors.insert(0, e)
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
@@ -5273,29 +5582,308 @@ errors.insert(0, e)
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
 ### Mutant #111
+
+- **Operator:** IOD
+- **Routine:** decimal_encoder
+- **Line:** 48
+- **Status:** SURVIVED
+- **Description:** Replace 'in' with 'not in' at line 48
+
+**Original Code:**
+```python
+results in failed round-tripping between encode and parse.
+```
+
+**Mutated Code:**
+```python
+results not in failed round-tripping between encode and parse.
+```
+
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #111)
+
+<details>
+<summary>Test Output</summary>
+
+```
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
+cachedir: .pytest_cache
+rootdir: /app
+configfile: pyproject.toml
+plugins: cov-7.0.0, anyio-4.12.1
+collecting ... collected 24 items
+
+tests/test_jsonable_encoder.py::test_encode_dict PASSED                  [  4%]
+tests/test_jsonable_encoder.py::test_encode_dict_include_exclude_list PASSED [  8%]
+tests/test_jsonable_encoder.py::test_encode_class PASSED                 [ 12%]
+tests/test_jsonable_encoder.py::test_encode_dictable PASSED              [ 16%]
+tests/test_jsonable_encoder.py::test_encode_dataclass PASSED             [ 20%]
+tests/test_jsonable_encoder.py::test_encode_unsupported PASSED           [ 25%]
+tests/test_jsonable_encoder.py::test_encode_custom_json_encoders_model_pydanticv2 PASSED [ 29%]
+tests/test_jsonable_encoder.py::test_json_encoder_error_with_pydanticv1 PASSED [ 33%]
+tests/test_jsonable_encoder.py
+```
+</details>
+
+---
+
+### Mutant #112
+
+- **Operator:** IOD
+- **Routine:** jsonable_encoder
+- **Line:** 145
+- **Status:** SURVIVED
+- **Description:** Replace 'in' with 'not in' at line 145
+
+**Original Code:**
+```python
+want to use it in the result, so you probably want to leave this set to
+```
+
+**Mutated Code:**
+```python
+want to use it not in the result, so you probably want to leave this set to
+```
+
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #112)
+
+<details>
+<summary>Test Output</summary>
+
+```
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
+cachedir: .pytest_cache
+rootdir: /app
+configfile: pyproject.toml
+plugins: cov-7.0.0, anyio-4.12.1
+collecting ... collected 24 items
+
+tests/test_jsonable_encoder.py::test_encode_dict PASSED                  [  4%]
+tests/test_jsonable_encoder.py::test_encode_dict_include_exclude_list PASSED [  8%]
+tests/test_jsonable_encoder.py::test_encode_class PASSED                 [ 12%]
+tests/test_jsonable_encoder.py::test_encode_dictable PASSED              [ 16%]
+tests/test_jsonable_encoder.py::test_encode_dataclass PASSED             [ 20%]
+tests/test_jsonable_encoder.py::test_encode_unsupported PASSED           [ 25%]
+tests/test_jsonable_encoder.py::test_encode_custom_json_encoders_model_pydanticv2 PASSED [ 29%]
+tests/test_jsonable_encoder.py::test_json_encoder_error_with_pydanticv1 PASSED [ 33%]
+tests/test_jsonable_encoder.py
+```
+</details>
+
+---
+
+### Mutant #113
+
+- **Operator:** IOD
+- **Routine:** jsonable_encoder
+- **Line:** 195
+- **Status:** SURVIVED
+- **Description:** Replace 'in' with 'not in' at line 195
+
+**Original Code:**
+```python
+store internal SQLAlchemy-specific state in attributes named with `_sa`,
+```
+
+**Mutated Code:**
+```python
+store internal SQLAlchemy-specific state not in attributes named with `_sa`,
+```
+
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #113)
+
+<details>
+<summary>Test Output</summary>
+
+```
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
+cachedir: .pytest_cache
+rootdir: /app
+configfile: pyproject.toml
+plugins: cov-7.0.0, anyio-4.12.1
+collecting ... collected 24 items
+
+tests/test_jsonable_encoder.py::test_encode_dict PASSED                  [  4%]
+tests/test_jsonable_encoder.py::test_encode_dict_include_exclude_list PASSED [  8%]
+tests/test_jsonable_encoder.py::test_encode_class PASSED                 [ 12%]
+tests/test_jsonable_encoder.py::test_encode_dictable PASSED              [ 16%]
+tests/test_jsonable_encoder.py::test_encode_dataclass PASSED             [ 20%]
+tests/test_jsonable_encoder.py::test_encode_unsupported PASSED           [ 25%]
+tests/test_jsonable_encoder.py::test_encode_custom_json_encoders_model_pydanticv2 PASSED [ 29%]
+tests/test_jsonable_encoder.py::test_json_encoder_error_with_pydanticv1 PASSED [ 33%]
+tests/test_jsonable_encoder.py
+```
+</details>
+
+---
+
+### Mutant #114
+
+- **Operator:** IOD
+- **Routine:** jsonable_encoder
+- **Line:** 202
+- **Status:** SURVIVED
+- **Description:** Replace 'in' with 'not in' at line 202
+
+**Original Code:**
+```python
+Convert any object to something that can be encoded in JSON.
+```
+
+**Mutated Code:**
+```python
+Convert any object to something that can be encoded not in JSON.
+```
+
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #114)
+
+<details>
+<summary>Test Output</summary>
+
+```
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
+cachedir: .pytest_cache
+rootdir: /app
+configfile: pyproject.toml
+plugins: cov-7.0.0, anyio-4.12.1
+collecting ... collected 24 items
+
+tests/test_jsonable_encoder.py::test_encode_dict PASSED                  [  4%]
+tests/test_jsonable_encoder.py::test_encode_dict_include_exclude_list PASSED [  8%]
+tests/test_jsonable_encoder.py::test_encode_class PASSED                 [ 12%]
+tests/test_jsonable_encoder.py::test_encode_dictable PASSED              [ 16%]
+tests/test_jsonable_encoder.py::test_encode_dataclass PASSED             [ 20%]
+tests/test_jsonable_encoder.py::test_encode_unsupported PASSED           [ 25%]
+tests/test_jsonable_encoder.py::test_encode_custom_json_encoders_model_pydanticv2 PASSED [ 29%]
+tests/test_jsonable_encoder.py::test_json_encoder_error_with_pydanticv1 PASSED [ 33%]
+tests/test_jsonable_encoder.py
+```
+</details>
+
+---
+
+### Mutant #115
+
+- **Operator:** IOD
+- **Routine:** jsonable_encoder
+- **Line:** 208
+- **Status:** SURVIVED
+- **Description:** Replace 'in' with 'not in' at line 208
+
+**Original Code:**
+```python
+in a database that supports only JSON.
+```
+
+**Mutated Code:**
+```python
+not in a database that supports only JSON.
+```
+
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #115)
+
+<details>
+<summary>Test Output</summary>
+
+```
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
+cachedir: .pytest_cache
+rootdir: /app
+configfile: pyproject.toml
+plugins: cov-7.0.0, anyio-4.12.1
+collecting ... collected 24 items
+
+tests/test_jsonable_encoder.py::test_encode_dict PASSED                  [  4%]
+tests/test_jsonable_encoder.py::test_encode_dict_include_exclude_list PASSED [  8%]
+tests/test_jsonable_encoder.py::test_encode_class PASSED                 [ 12%]
+tests/test_jsonable_encoder.py::test_encode_dictable PASSED              [ 16%]
+tests/test_jsonable_encoder.py::test_encode_dataclass PASSED             [ 20%]
+tests/test_jsonable_encoder.py::test_encode_unsupported PASSED           [ 25%]
+tests/test_jsonable_encoder.py::test_encode_custom_json_encoders_model_pydanticv2 PASSED [ 29%]
+tests/test_jsonable_encoder.py::test_json_encoder_error_with_pydanticv1 PASSED [ 33%]
+tests/test_jsonable_encoder.py
+```
+</details>
+
+---
+
+### Mutant #116
+
+- **Operator:** IOD
+- **Routine:** jsonable_encoder
+- **Line:** 210
+- **Status:** SURVIVED
+- **Description:** Replace 'in' with 'not in' at line 210
+
+**Original Code:**
+```python
+Read more about it in the
+```
+
+**Mutated Code:**
+```python
+Read more about it not in the
+```
+
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #116)
+
+<details>
+<summary>Test Output</summary>
+
+```
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
+cachedir: .pytest_cache
+rootdir: /app
+configfile: pyproject.toml
+plugins: cov-7.0.0, anyio-4.12.1
+collecting ... collected 24 items
+
+tests/test_jsonable_encoder.py::test_encode_dict PASSED                  [  4%]
+tests/test_jsonable_encoder.py::test_encode_dict_include_exclude_list PASSED [  8%]
+tests/test_jsonable_encoder.py::test_encode_class PASSED                 [ 12%]
+tests/test_jsonable_encoder.py::test_encode_dictable PASSED              [ 16%]
+tests/test_jsonable_encoder.py::test_encode_dataclass PASSED             [ 20%]
+tests/test_jsonable_encoder.py::test_encode_unsupported PASSED           [ 25%]
+tests/test_jsonable_encoder.py::test_encode_custom_json_encoders_model_pydanticv2 PASSED [ 29%]
+tests/test_jsonable_encoder.py::test_json_encoder_error_with_pydanticv1 PASSED [ 33%]
+tests/test_jsonable_encoder.py
+```
+</details>
+
+---
+
+### Mutant #117
 
 - **Operator:** IOD
 - **Routine:** jsonable_encoder
@@ -5313,35 +5901,38 @@ if type(obj) in custom_encoder:
 if type(obj) not in custom_encoder:
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #111)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #117)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #112
+### Mutant #118
 
 - **Operator:** IOD
 - **Routine:** jsonable_encoder
@@ -5359,26 +5950,26 @@ and key in allowed_keys
 and key not in allowed_keys
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #112)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #118)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 24 items
 
 tests/test_jsonable_encoder.py::test_encode_dict FAILED                  [  4%]
 
-================================== FAILURES ===================================
-______________________________ test_encode_dict _______________________________
-tests\test_jsonable_encoder.py:77: in test_encode_dict
-    assert jsonable_encoder(pet) == {"name": "Firulais", "owner": {"name": "Foo"}}
+=================================== FAILURES ===================================
+_______________________________ test_encode_dict _______________________________
+C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2\tests\test_jsonable_encoder.py:77: in test_encode_dict
+    ???
 E   AssertionError: assert {} == {'name': 'Fir...name': 'Foo'}}
 E     
 E     Right contains 2 more items:
@@ -5388,13 +5979,14 @@ E     Full diff:
 E     + {}
 E     - {...
 E     
-E     ...Full output truncat
+E     ...Full output truncated (5 lines hidden), use '-vv' to show
+=========================== short test summary info ===
 ```
 </details>
 
 ---
 
-### Mutant #113
+### Mutant #119
 
 - **Operator:** IOD
 - **Routine:** jsonable_encoder
@@ -5412,35 +6004,38 @@ if type(obj) in ENCODERS_BY_TYPE:
 if type(obj) not in ENCODERS_BY_TYPE:
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #113)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #119)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #114
+### Mutant #120
 
 - **Operator:** TYP
 - **Routine:** decimal_encoder
@@ -5458,35 +6053,38 @@ if isinstance(exponent, int) and exponent >= 0:
 if not isinstance(exponent, int) and exponent >= 0:
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #114)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #120)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #115
+### Mutant #121
 
 - **Operator:** TYP
 - **Routine:** jsonable_encoder
@@ -5504,35 +6102,38 @@ if type(obj) in custom_encoder:
 if str(type(obj) in custom_encoder:
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #115)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #121)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #116
+### Mutant #122
 
 - **Operator:** TYP
 - **Routine:** jsonable_encoder
@@ -5550,35 +6151,38 @@ return custom_encoder[type(obj)](obj)
 return custom_encoder[str(type(obj)](obj)
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #116)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #122)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #117
+### Mutant #123
 
 - **Operator:** TYP
 - **Routine:** jsonable_encoder
@@ -5596,35 +6200,38 @@ if isinstance(obj, encoder_type):
 if not isinstance(obj, encoder_type):
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #117)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #123)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #118
+### Mutant #124
 
 - **Operator:** TYP
 - **Routine:** jsonable_encoder
@@ -5642,35 +6249,38 @@ if isinstance(obj, BaseModel):
 if not isinstance(obj, BaseModel):
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #118)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #124)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #119
+### Mutant #125
 
 - **Operator:** TYP
 - **Routine:** jsonable_encoder
@@ -5688,35 +6298,38 @@ if dataclasses.is_dataclass(obj):
 if dataclasses.not is_dataclass(obj):
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #119)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #125)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #120
+### Mutant #126
 
 - **Operator:** TYP
 - **Routine:** jsonable_encoder
@@ -5734,35 +6347,38 @@ if isinstance(obj, Enum):
 if not isinstance(obj, Enum):
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #120)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #126)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #121
+### Mutant #127
 
 - **Operator:** TYP
 - **Routine:** jsonable_encoder
@@ -5780,35 +6396,38 @@ if isinstance(obj, PurePath):
 if not isinstance(obj, PurePath):
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #121)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #127)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #122
+### Mutant #128
 
 - **Operator:** TYP
 - **Routine:** jsonable_encoder
@@ -5826,35 +6445,38 @@ if isinstance(obj, (str, int, float, type(None))):
 if not isinstance(obj, (str, int, float, type(None))):
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #122)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #128)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #123
+### Mutant #129
 
 - **Operator:** TYP
 - **Routine:** jsonable_encoder
@@ -5872,35 +6494,38 @@ if isinstance(obj, (str, int, float, type(None))):
 if isinstance(obj, (str, int, float, str(type(None))):
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #123)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #129)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #124
+### Mutant #130
 
 - **Operator:** TYP
 - **Routine:** jsonable_encoder
@@ -5918,35 +6543,38 @@ if isinstance(obj, PydanticUndefinedType):
 if not isinstance(obj, PydanticUndefinedType):
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #124)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #130)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #125
+### Mutant #131
 
 - **Operator:** TYP
 - **Routine:** jsonable_encoder
@@ -5964,35 +6592,38 @@ if isinstance(obj, dict):
 if not isinstance(obj, dict):
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #125)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #131)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #126
+### Mutant #132
 
 - **Operator:** TYP
 - **Routine:** jsonable_encoder
@@ -6010,35 +6641,38 @@ if isinstance(obj, (list, set, frozenset, GeneratorType, tuple, deque)):
 if not isinstance(obj, (list, set, frozenset, GeneratorType, tuple, deque)):
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #126)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #132)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #127
+### Mutant #133
 
 - **Operator:** TYP
 - **Routine:** jsonable_encoder
@@ -6056,35 +6690,38 @@ if type(obj) in ENCODERS_BY_TYPE:
 if str(type(obj) in ENCODERS_BY_TYPE:
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #127)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #133)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #128
+### Mutant #134
 
 - **Operator:** TYP
 - **Routine:** jsonable_encoder
@@ -6102,35 +6739,38 @@ return ENCODERS_BY_TYPE[type(obj)](obj)
 return ENCODERS_BY_TYPE[str(type(obj)](obj)
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #128)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #134)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #129
+### Mutant #135
 
 - **Operator:** TYP
 - **Routine:** jsonable_encoder
@@ -6148,35 +6788,38 @@ if isinstance(obj, classes_tuple):
 if not isinstance(obj, classes_tuple):
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #129)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #135)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #130
+### Mutant #136
 
 - **Operator:** DCI
 - **Routine:** jsonable_encoder
@@ -6194,35 +6837,38 @@ allowed_keys &= set(include)
 allowed_keys |= set(include)
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #130)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #136)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #131
+### Mutant #137
 
 - **Operator:** DCI
 - **Routine:** jsonable_encoder
@@ -6240,35 +6886,38 @@ allowed_keys -= set(exclude)
 allowed_keys += set(exclude)
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #131)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #137)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #132
+### Mutant #138
 
 - **Operator:** FCR
 - **Routine:** decimal_encoder
@@ -6286,35 +6935,38 @@ exponent = dec_value.as_tuple().exponent
 exponent = dec_value.as_list().exponent
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #132)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #138)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #133
+### Mutant #139
 
 - **Operator:** FCR
 - **Routine:** decimal_encoder
@@ -6332,35 +6984,38 @@ return int(dec_value)
 return float(dec_value)
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #133)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #139)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #134
+### Mutant #140
 
 - **Operator:** FCR
 - **Routine:** decimal_encoder
@@ -6378,35 +7033,38 @@ return float(dec_value)
 return int(dec_value)
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #134)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #140)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #135
+### Mutant #141
 
 - **Operator:** FCR
 - **Routine:** generate_encoders_by_class_tuples
@@ -6424,35 +7082,38 @@ encoders_by_class_tuples: dict[Callable[[Any], Any], tuple[Any, ...]] = defaultd
 encoders_by_class_tuples: dict[Callable[[Any], Any], tuple[Any, ...]] = defaultlist(
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #135)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #141)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #136
+### Mutant #142
 
 - **Operator:** FCR
 - **Routine:** jsonable_encoder
@@ -6470,35 +7131,38 @@ include = set(include)
 include = frozenset(include)
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #136)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #142)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #137
+### Mutant #143
 
 - **Operator:** FCR
 - **Routine:** jsonable_encoder
@@ -6516,35 +7180,38 @@ exclude = set(exclude)
 exclude = frozenset(exclude)
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #137)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #143)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #138
+### Mutant #144
 
 - **Operator:** FCR
 - **Routine:** jsonable_encoder
@@ -6562,35 +7229,38 @@ obj_dict = dataclasses.asdict(obj)
 obj_dict = dataclasses.aslist(obj)
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #138)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #144)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #139
+### Mutant #145
 
 - **Operator:** FCR
 - **Routine:** jsonable_encoder
@@ -6608,35 +7278,38 @@ return str(obj)
 return repr(obj)
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #139)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #145)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #140
+### Mutant #146
 
 - **Operator:** FCR
 - **Routine:** jsonable_encoder
@@ -6654,35 +7327,38 @@ allowed_keys = set(obj.keys())
 allowed_keys = frozenset(obj.keys())
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #140)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #146)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #141
+### Mutant #147
 
 - **Operator:** FCR
 - **Routine:** jsonable_encoder
@@ -6700,35 +7376,38 @@ allowed_keys &= set(include)
 allowed_keys &= frozenset(include)
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #141)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #147)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #142
+### Mutant #148
 
 - **Operator:** FCR
 - **Routine:** jsonable_encoder
@@ -6746,35 +7425,38 @@ allowed_keys -= set(exclude)
 allowed_keys -= frozenset(exclude)
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #142)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #148)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 
 ---
 
-### Mutant #143
+### Mutant #149
 
 - **Operator:** FCR
 - **Routine:** jsonable_encoder
@@ -6792,29 +7474,32 @@ data = dict(obj)
 data = list(obj)
 ```
 
-**Unified Diff:** See `consolidated_mutations.diff` (Mutant #143)
+**Unified Diff:** See `consolidated_mutations.diff` (Mutant #149)
 
 <details>
 <summary>Test Output</summary>
 
 ```
-============================= test session starts =============================
-platform win32 -- Python 3.12.7, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\eulun\AppData\Local\Programs\Python\Python312\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.12
 cachedir: .pytest_cache
-rootdir: C:\Users\eulun\Desktop\473\fastapi-mutation-testing-2
+rootdir: /app
 configfile: pyproject.toml
-plugins: anyio-4.6.0
+plugins: cov-7.0.0, anyio-4.12.1
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_______________ ERROR collecting tests/test_jsonable_encoder.py _______________
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\python.py:507: in importtestmodule
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+/usr/local/lib/python3.12/site-packages/_pytest/python.py:507: in importtestmodule
     mod = import_path(
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.12/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-..\..\..\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _fin
 ```
 </details>
 

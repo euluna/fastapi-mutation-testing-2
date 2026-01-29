@@ -249,7 +249,7 @@ def generate_mutants(source_lines: List[str]) -> List[Mutant]:
     
     # STR: String mutation
     for i, line in enumerate(source_lines, 1):
-        if i not in code_lines:
+        if not is_code_line(line):
             continue
         
         if ('"' in line or "'" in line) and 'import' not in line:
@@ -275,7 +275,7 @@ def generate_mutants(source_lines: List[str]) -> List[Mutant]:
         ('.list(', '.tuple('),
     ]
     for i, line in enumerate(source_lines, 1):
-        if i not in code_lines:
+        if not is_code_line(line):
             continue
         
         for orig_method, new_method in method_mutations:
@@ -293,7 +293,7 @@ def generate_mutants(source_lines: List[str]) -> List[Mutant]:
     
     # IOD: In/Not in operator
     for i, line in enumerate(source_lines, 1):
-        if i not in code_lines:
+        if not is_code_line(line):
             continue
         
         if ' in ' in line and ' not in ' not in line and 'import' not in line and 'for ' not in line:
@@ -326,7 +326,7 @@ def generate_mutants(source_lines: List[str]) -> List[Mutant]:
         ('type(', 'str(type('),
     ]
     for i, line in enumerate(source_lines, 1):
-        if i not in code_lines:
+        if not is_code_line(line):
             continue
         
         for orig_check, new_check in type_checks:
@@ -348,7 +348,7 @@ def generate_mutants(source_lines: List[str]) -> List[Mutant]:
         ('[key]', '.get(key, None)'), ('.get(', '['),
     ]
     for i, line in enumerate(source_lines, 1):
-        if i not in code_lines:
+        if not is_code_line(line):
             continue
         
         for orig_op, new_op in dict_ops:
@@ -371,7 +371,7 @@ def generate_mutants(source_lines: List[str]) -> List[Mutant]:
         ('set(', 'frozenset('), ('dict(', 'list('),
     ]
     for i, line in enumerate(source_lines, 1):
-        if i not in code_lines:
+        if not is_code_line(line):
             continue
         
         for orig_func, new_func in func_replacements:
