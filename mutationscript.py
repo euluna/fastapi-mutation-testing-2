@@ -80,46 +80,36 @@ def generate_mutants(source_lines: List[str]) -> List[Mutant]:
     mutants = []
     mutant_id = 1
     
-    # Track docstrings and annotations
+    # First pass: identify lines that are in docstrings or comments
     in_docstring = False
     docstring_marker = None
-    in_doc_annotation = False
-    doc_paren_count = 0
+    code_lines = set()  # Line numbers that contain code (not docstrings/comments)
+    
+    for i, line in enumerate(source_lines):
+        stripped = line.strip()
+        
+        # Track docstrings
+        if '"""' in line:
+            count = line.count('"""')
+            if count == 1:
+                in_docstring = not in_docstring
+            elif count >= 2:
+                in_docstring = False  # Docstring on single line
+        elif "'''" in line:
+            count = line.count("'''")
+            if count == 1:
+                in_docstring = not in_docstring
+            elif count >= 2:
+                in_docstring = False  # Docstring on single line
+        
+        # Check if this is a code line
+        if not in_docstring and stripped and not stripped.startswith('#'):
+            code_lines.add(i + 1)  # Convert to 1-indexed
     
     # AOR: Arithmetic operators
     arithmetic_ops = [('+', '-'), ('-', '+'), ('*', '/'), ('/', '*'), ('//', '/'), ('%', '//')]
     for i, line in enumerate(source_lines, 1):
-        stripped = line.strip()
-        
-        # Track docstrings
-        if '"""' in stripped:
-            if not in_docstring:
-                in_docstring = True
-                docstring_marker = '"""'
-            elif docstring_marker == '"""':
-                in_docstring = False
-                docstring_marker = None
-            continue
-        if "'''" in stripped:
-            if not in_docstring:
-                in_docstring = True
-                docstring_marker = "'''"
-            elif docstring_marker == "'''":
-                in_docstring = False
-                docstring_marker = None
-            continue
-            
-        # Track Doc() annotations
-        if 'Doc(' in line:
-            in_doc_annotation = True
-            doc_paren_count = line.count('(') - line.count(')')
-        elif in_doc_annotation:
-            doc_paren_count += line.count('(') - line.count(')')
-            if doc_paren_count <= 0:
-                in_doc_annotation = False
-            continue
-            
-        if not is_code_line(line, in_docstring, in_doc_annotation):
+        if i not in code_lines:
             continue
             
         for orig_op, new_op in arithmetic_ops:
@@ -142,7 +132,7 @@ def generate_mutants(source_lines: List[str]) -> List[Mutant]:
     relational_ops = [('==', '!='), ('!=', '=='), (' < ', ' <= '), (' > ', ' >= '), 
                       ('<=', '<'), ('>=', '>'), (' is ', ' is not '), (' is not ', ' is ')]
     for i, line in enumerate(source_lines, 1):
-        if not is_code_line(line):
+        if i not in code_lines:
             continue
         
         for orig_op, new_op in relational_ops:
@@ -161,7 +151,7 @@ def generate_mutants(source_lines: List[str]) -> List[Mutant]:
     # LCR: Logical operators
     logical_ops = [(' and ', ' or '), (' or ', ' and ')]
     for i, line in enumerate(source_lines, 1):
-        if not is_code_line(line):
+        if i not in code_lines:
             continue
         
         for orig_op, new_op in logical_ops:
@@ -188,7 +178,7 @@ def generate_mutants(source_lines: List[str]) -> List[Mutant]:
         (' 0', ' 1'), (' 1', ' 0'),
     ]
     for i, line in enumerate(source_lines, 1):
-        if not is_code_line(line):
+        if i not in code_lines:
             continue
         if 'def ' in line or 'class ' in line or 'import' in line:
             continue
@@ -208,7 +198,7 @@ def generate_mutants(source_lines: List[str]) -> List[Mutant]:
     
     # UOI: Unary operator insertion (not)
     for i, line in enumerate(source_lines, 1):
-        if not is_code_line(line):
+        if i not in code_lines:
             continue
         
         if line.strip().startswith('if ') and ':' in line and 'not ' not in line:
@@ -230,7 +220,7 @@ def generate_mutants(source_lines: List[str]) -> List[Mutant]:
     
     # RIL: Return statement mutation
     for i, line in enumerate(source_lines, 1):
-        if not is_code_line(line):
+        if i not in code_lines:
             continue
         
         stripped = line.strip()
@@ -259,7 +249,7 @@ def generate_mutants(source_lines: List[str]) -> List[Mutant]:
     
     # STR: String mutation
     for i, line in enumerate(source_lines, 1):
-        if not is_code_line(line):
+        if i not in code_lines:
             continue
         
         if ('"' in line or "'" in line) and 'import' not in line:
@@ -285,7 +275,7 @@ def generate_mutants(source_lines: List[str]) -> List[Mutant]:
         ('.list(', '.tuple('),
     ]
     for i, line in enumerate(source_lines, 1):
-        if not is_code_line(line):
+        if i not in code_lines:
             continue
         
         for orig_method, new_method in method_mutations:
@@ -303,7 +293,7 @@ def generate_mutants(source_lines: List[str]) -> List[Mutant]:
     
     # IOD: In/Not in operator
     for i, line in enumerate(source_lines, 1):
-        if not is_code_line(line):
+        if i not in code_lines:
             continue
         
         if ' in ' in line and ' not in ' not in line and 'import' not in line and 'for ' not in line:
@@ -336,7 +326,7 @@ def generate_mutants(source_lines: List[str]) -> List[Mutant]:
         ('type(', 'str(type('),
     ]
     for i, line in enumerate(source_lines, 1):
-        if not is_code_line(line):
+        if i not in code_lines:
             continue
         
         for orig_check, new_check in type_checks:
@@ -358,7 +348,7 @@ def generate_mutants(source_lines: List[str]) -> List[Mutant]:
         ('[key]', '.get(key, None)'), ('.get(', '['),
     ]
     for i, line in enumerate(source_lines, 1):
-        if not is_code_line(line):
+        if i not in code_lines:
             continue
         
         for orig_op, new_op in dict_ops:
@@ -381,7 +371,7 @@ def generate_mutants(source_lines: List[str]) -> List[Mutant]:
         ('set(', 'frozenset('), ('dict(', 'list('),
     ]
     for i, line in enumerate(source_lines, 1):
-        if not is_code_line(line):
+        if i not in code_lines:
             continue
         
         for orig_func, new_func in func_replacements:

@@ -4,14 +4,14 @@
 
 **Date:** January 28, 2026  
 **Target File:** `fastapi/encoders.py`  
-**Total Mutations Generated:** 160  
+**Total Mutations Generated:** 143 (after filtering docstring/comment mutations)  
 **Mutation Testing Results:**
 
-- **Killed:** 134 (83%)
-- **Survived:** 26 (16%)
+- **Killed:** 134 (94%)
+- **Survived:** 9 (6%)
 - **Errors:** 0
 - **Timeouts:** 0
-- **Mutation Score:** 83%
+- **Mutation Score:** 94%
 
 ## Objective
 
