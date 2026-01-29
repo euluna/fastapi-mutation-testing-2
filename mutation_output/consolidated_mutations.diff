@@ -1,0 +1,1510 @@
+================================================================================
+CONSOLIDATED MUTATION DIFF FILE
+FastAPI encoders.py - All Mutations
+Total Mutants: 160
+Killed: 135, Survived: 25
+================================================================================
+
+Mutant #001 - AOR - KILLED
+Description: Replace '+' with '-' at line 104
+Routine: generate_encoders_by_class_tuples
+--- original (line 104)
++++ mutant (line 104)
+-        encoders_by_class_tuples[encoder] += (type_,)
++        encoders_by_class_tuples[encoder] -= (type_,)
+--------------------------------------------------------------------------------
+
+Mutant #002 - AOR - KILLED
+Description: Replace '-' with '+' at line 269
+Routine: jsonable_encoder
+--- original (line 269)
++++ mutant (line 269)
+-            allowed_keys -= set(exclude)
++            allowed_keys += set(exclude)
+--------------------------------------------------------------------------------
+
+Mutant #003 - ROR - SURVIVED
+Description: Replace 'is' with 'is not' at line 46
+Routine: decimal_encoder
+--- original (line 46)
++++ mutant (line 46)
+-    This is useful when we use ConstrainedDecimal to represent Numeric(x,0)
++    This is not useful when we use ConstrainedDecimal to represent Numeric(x,0)
+--------------------------------------------------------------------------------
+
+Mutant #004 - ROR - SURVIVED
+Description: Replace 'is' with 'is not' at line 47
+Routine: decimal_encoder
+--- original (line 47)
++++ mutant (line 47)
+-    where an integer (but not int typed) is used. Encoding this as a float
++    where an integer (but not int typed) is not used. Encoding this as a float
+--------------------------------------------------------------------------------
+
+Mutant #005 - ROR - SURVIVED
+Description: Replace 'is' with 'is not' at line 49
+Routine: decimal_encoder
+--- original (line 49)
++++ mutant (line 49)
+-    Our Id type is a prime example of this.
++    Our Id type is not a prime example of this.
+--------------------------------------------------------------------------------
+
+Mutant #006 - ROR - KILLED
+Description: Replace '>=' with '>' at line 61
+Routine: decimal_encoder
+--- original (line 61)
++++ mutant (line 61)
+-    if isinstance(exponent, int) and exponent >= 0:
++    if isinstance(exponent, int) and exponent > 0:
+--------------------------------------------------------------------------------
+
+Mutant #007 - ROR - SURVIVED
+Description: Replace 'is' with 'is not' at line 194
+Routine: jsonable_encoder
+--- original (line 194)
++++ mutant (line 194)
+-            This is mainly a hack for compatibility with SQLAlchemy objects, they
++            This is not mainly a hack for compatibility with SQLAlchemy objects, they
+--------------------------------------------------------------------------------
+
+Mutant #008 - ROR - SURVIVED
+Description: Replace 'is' with 'is not' at line 204
+Routine: jsonable_encoder
+--- original (line 204)
++++ mutant (line 204)
+-    This is used internally by FastAPI to make sure anything you return can be
++    This is not used internally by FastAPI to make sure anything you return can be
+--------------------------------------------------------------------------------
+
+Mutant #009 - ROR - SURVIVED
+Description: Replace 'is' with 'is not' at line 205
+Routine: jsonable_encoder
+--- original (line 205)
++++ mutant (line 205)
+-    encoded as JSON before it is sent to the client.
++    encoded as JSON before it is not sent to the client.
+--------------------------------------------------------------------------------
+
+Mutant #010 - ROR - KILLED
+Description: Replace 'is' with 'is not' at line 221
+Routine: jsonable_encoder
+--- original (line 221)
++++ mutant (line 221)
+-    if include is not None and not isinstance(include, (set, dict)):
++    if include is not not None and not isinstance(include, (set, dict)):
+--------------------------------------------------------------------------------
+
+Mutant #011 - ROR - KILLED
+Description: Replace 'is not' with 'is' at line 221
+Routine: jsonable_encoder
+--- original (line 221)
++++ mutant (line 221)
+-    if include is not None and not isinstance(include, (set, dict)):
++    if include is None and not isinstance(include, (set, dict)):
+--------------------------------------------------------------------------------
+
+Mutant #012 - ROR - KILLED
+Description: Replace 'is' with 'is not' at line 223
+Routine: jsonable_encoder
+--- original (line 223)
++++ mutant (line 223)
+-    if exclude is not None and not isinstance(exclude, (set, dict)):
++    if exclude is not not None and not isinstance(exclude, (set, dict)):
+--------------------------------------------------------------------------------
+
+Mutant #013 - ROR - KILLED
+Description: Replace 'is not' with 'is' at line 223
+Routine: jsonable_encoder
+--- original (line 223)
++++ mutant (line 223)
+-    if exclude is not None and not isinstance(exclude, (set, dict)):
++    if exclude is None and not isinstance(exclude, (set, dict)):
+--------------------------------------------------------------------------------
+
+Mutant #014 - ROR - KILLED
+Description: Replace 'is' with 'is not' at line 266
+Routine: jsonable_encoder
+--- original (line 266)
++++ mutant (line 266)
+-        if include is not None:
++        if include is not not None:
+--------------------------------------------------------------------------------
+
+Mutant #015 - ROR - KILLED
+Description: Replace 'is not' with 'is' at line 266
+Routine: jsonable_encoder
+--- original (line 266)
++++ mutant (line 266)
+-        if include is not None:
++        if include is None:
+--------------------------------------------------------------------------------
+
+Mutant #016 - ROR - KILLED
+Description: Replace 'is' with 'is not' at line 268
+Routine: jsonable_encoder
+--- original (line 268)
++++ mutant (line 268)
+-        if exclude is not None:
++        if exclude is not not None:
+--------------------------------------------------------------------------------
+
+Mutant #017 - ROR - KILLED
+Description: Replace 'is not' with 'is' at line 268
+Routine: jsonable_encoder
+--- original (line 268)
++++ mutant (line 268)
+-        if exclude is not None:
++        if exclude is None:
+--------------------------------------------------------------------------------
+
+Mutant #018 - ROR - KILLED
+Description: Replace 'is' with 'is not' at line 277
+Routine: jsonable_encoder
+--- original (line 277)
++++ mutant (line 277)
+-                and (value is not None or not exclude_none)
++                and (value is not not None or not exclude_none)
+--------------------------------------------------------------------------------
+
+Mutant #019 - ROR - SURVIVED
+Description: Replace 'is not' with 'is' at line 277
+Routine: jsonable_encoder
+--- original (line 277)
++++ mutant (line 277)
+-                and (value is not None or not exclude_none)
++                and (value is None or not exclude_none)
+--------------------------------------------------------------------------------
+
+Mutant #020 - LCR - SURVIVED
+Description: Replace 'and' with 'or' at line 48
+Routine: decimal_encoder
+--- original (line 48)
++++ mutant (line 48)
+-    results in failed round-tripping between encode and parse.
++    results in failed round-tripping between encode or parse.
+--------------------------------------------------------------------------------
+
+Mutant #021 - LCR - KILLED
+Description: Replace 'and' with 'or' at line 61
+Routine: decimal_encoder
+--- original (line 61)
++++ mutant (line 61)
+-    if isinstance(exponent, int) and exponent >= 0:
++    if isinstance(exponent, int) or exponent >= 0:
+--------------------------------------------------------------------------------
+
+Mutant #022 - LCR - SURVIVED
+Description: Replace 'or' with 'and' at line 143
+Routine: jsonable_encoder
+--- original (line 143)
++++ mutant (line 143)
+-            the output should use the alias names (when provided) or the Python
++            the output should use the alias names (when provided) and the Python
+--------------------------------------------------------------------------------
+
+Mutant #023 - LCR - SURVIVED
+Description: Replace 'and' with 'or' at line 196
+Routine: jsonable_encoder
+--- original (line 196)
++++ mutant (line 196)
+-            and those objects can't (and shouldn't be) serialized to JSON.
++            or those objects can't (and shouldn't be) serialized to JSON.
+--------------------------------------------------------------------------------
+
+Mutant #024 - LCR - KILLED
+Description: Replace 'or' with 'and' at line 213
+Routine: jsonable_encoder
+--- original (line 213)
++++ mutant (line 213)
+-    custom_encoder = custom_encoder or {}
++    custom_encoder = custom_encoder and {}
+--------------------------------------------------------------------------------
+
+Mutant #025 - LCR - KILLED
+Description: Replace 'and' with 'or' at line 221
+Routine: jsonable_encoder
+--- original (line 221)
++++ mutant (line 221)
+-    if include is not None and not isinstance(include, (set, dict)):
++    if include is not None or not isinstance(include, (set, dict)):
+--------------------------------------------------------------------------------
+
+Mutant #026 - LCR - KILLED
+Description: Replace 'and' with 'or' at line 223
+Routine: jsonable_encoder
+--- original (line 223)
++++ mutant (line 223)
+-    if exclude is not None and not isinstance(exclude, (set, dict)):
++    if exclude is not None or not isinstance(exclude, (set, dict)):
+--------------------------------------------------------------------------------
+
+Mutant #027 - LCR - SURVIVED
+Description: Replace 'or' with 'and' at line 274
+Routine: jsonable_encoder
+--- original (line 274)
++++ mutant (line 274)
+-                    or (not isinstance(key, str))
++                    and (not isinstance(key, str))
+--------------------------------------------------------------------------------
+
+Mutant #028 - LCR - KILLED
+Description: Replace 'or' with 'and' at line 275
+Routine: jsonable_encoder
+--- original (line 275)
++++ mutant (line 275)
+-                    or (not key.startswith("_sa"))
++                    and (not key.startswith("_sa"))
+--------------------------------------------------------------------------------
+
+Mutant #029 - LCR - KILLED
+Description: Replace 'and' with 'or' at line 277
+Routine: jsonable_encoder
+--- original (line 277)
++++ mutant (line 277)
+-                and (value is not None or not exclude_none)
++                or (value is not None or not exclude_none)
+--------------------------------------------------------------------------------
+
+Mutant #030 - LCR - SURVIVED
+Description: Replace 'or' with 'and' at line 277
+Routine: jsonable_encoder
+--- original (line 277)
++++ mutant (line 277)
+-                and (value is not None or not exclude_none)
++                and (value is not None and not exclude_none)
+--------------------------------------------------------------------------------
+
+Mutant #031 - LCR - KILLED
+Description: Replace 'and' with 'or' at line 278
+Routine: jsonable_encoder
+--- original (line 278)
++++ mutant (line 278)
+-                and key in allowed_keys
++                or key in allowed_keys
+--------------------------------------------------------------------------------
+
+Mutant #032 - CDL - SURVIVED
+Description: Replace '1' with '0' at line 52
+Routine: decimal_encoder
+--- original (line 52)
++++ mutant (line 52)
+-    1.0
++    0.0
+--------------------------------------------------------------------------------
+
+Mutant #033 - CDL - SURVIVED
+Description: Replace '1' with '0' at line 55
+Routine: decimal_encoder
+--- original (line 55)
++++ mutant (line 55)
+-    1
++    0
+--------------------------------------------------------------------------------
+
+Mutant #034 - CDL - KILLED
+Description: Replace '0' with '1' at line 61
+Routine: decimal_encoder
+--- original (line 61)
++++ mutant (line 61)
+-    if isinstance(exponent, int) and exponent >= 0:
++    if isinstance(exponent, int) and exponent >= 1:
+--------------------------------------------------------------------------------
+
+Mutant #035 - CDL - KILLED
+Description: Replace 'None,' with '{},' at line 128
+Routine: jsonable_encoder
+--- original (line 128)
++++ mutant (line 128)
+-    ] = None,
++    ] = {},
+--------------------------------------------------------------------------------
+
+Mutant #036 - CDL - SURVIVED
+Description: Replace 'None,' with '{},' at line 137
+Routine: jsonable_encoder
+--- original (line 137)
++++ mutant (line 137)
+-    ] = None,
++    ] = {},
+--------------------------------------------------------------------------------
+
+Mutant #037 - CDL - KILLED
+Description: Replace '= True' with '= False' at line 149
+Routine: jsonable_encoder
+--- original (line 149)
++++ mutant (line 149)
+-    ] = True,
++    ] = False,
+--------------------------------------------------------------------------------
+
+Mutant #038 - CDL - KILLED
+Description: Replace 'True,' with 'False,' at line 149
+Routine: jsonable_encoder
+--- original (line 149)
++++ mutant (line 149)
+-    ] = True,
++    ] = False,
+--------------------------------------------------------------------------------
+
+Mutant #039 - CDL - KILLED
+Description: Replace '= False' with '= True' at line 159
+Routine: jsonable_encoder
+--- original (line 159)
++++ mutant (line 159)
+-    ] = False,
++    ] = True,
+--------------------------------------------------------------------------------
+
+Mutant #040 - CDL - KILLED
+Description: Replace 'False,' with 'True,' at line 159
+Routine: jsonable_encoder
+--- original (line 159)
++++ mutant (line 159)
+-    ] = False,
++    ] = True,
+--------------------------------------------------------------------------------
+
+Mutant #041 - CDL - KILLED
+Description: Replace '= False' with '= True' at line 169
+Routine: jsonable_encoder
+--- original (line 169)
++++ mutant (line 169)
+-    ] = False,
++    ] = True,
+--------------------------------------------------------------------------------
+
+Mutant #042 - CDL - KILLED
+Description: Replace 'False,' with 'True,' at line 169
+Routine: jsonable_encoder
+--- original (line 169)
++++ mutant (line 169)
+-    ] = False,
++    ] = True,
+--------------------------------------------------------------------------------
+
+Mutant #043 - CDL - KILLED
+Description: Replace '= False' with '= True' at line 178
+Routine: jsonable_encoder
+--- original (line 178)
++++ mutant (line 178)
+-    ] = False,
++    ] = True,
+--------------------------------------------------------------------------------
+
+Mutant #044 - CDL - SURVIVED
+Description: Replace 'False,' with 'True,' at line 178
+Routine: jsonable_encoder
+--- original (line 178)
++++ mutant (line 178)
+-    ] = False,
++    ] = True,
+--------------------------------------------------------------------------------
+
+Mutant #045 - CDL - SURVIVED
+Description: Replace 'None,' with '{},' at line 187
+Routine: jsonable_encoder
+--- original (line 187)
++++ mutant (line 187)
+-    ] = None,
++    ] = {},
+--------------------------------------------------------------------------------
+
+Mutant #046 - CDL - SURVIVED
+Description: Replace '= True' with '= False' at line 199
+Routine: jsonable_encoder
+--- original (line 199)
++++ mutant (line 199)
+-    ] = True,
++    ] = False,
+--------------------------------------------------------------------------------
+
+Mutant #047 - CDL - SURVIVED
+Description: Replace 'True,' with 'False,' at line 199
+Routine: jsonable_encoder
+--- original (line 199)
++++ mutant (line 199)
+-    ] = True,
++    ] = False,
+--------------------------------------------------------------------------------
+
+Mutant #048 - CDL - KILLED
+Description: Replace 'return None' with 'return {}' at line 262
+Routine: jsonable_encoder
+--- original (line 262)
++++ mutant (line 262)
+-        return None
++        return {}
+--------------------------------------------------------------------------------
+
+Mutant #049 - UOI - KILLED
+Description: Insert 'not' operator in condition at line 61
+Routine: decimal_encoder
+--- original (line 61)
++++ mutant (line 61)
+-    if isinstance(exponent, int) and exponent >= 0:
++    if not (isinstance(exponent, int) and exponent >= 0):
+
+--------------------------------------------------------------------------------
+
+Mutant #050 - UOI - KILLED
+Description: Insert 'not' operator in condition at line 214
+Routine: jsonable_encoder
+--- original (line 214)
++++ mutant (line 214)
+-    if custom_encoder:
++    if not (custom_encoder):
+
+--------------------------------------------------------------------------------
+
+Mutant #051 - UOI - KILLED
+Description: Insert 'not' operator in condition at line 215
+Routine: jsonable_encoder
+--- original (line 215)
++++ mutant (line 215)
+-        if type(obj) in custom_encoder:
++        if not (type(obj) in custom_encoder):
+
+--------------------------------------------------------------------------------
+
+Mutant #052 - UOI - KILLED
+Description: Insert 'not' operator in condition at line 219
+Routine: jsonable_encoder
+--- original (line 219)
++++ mutant (line 219)
+-                if isinstance(obj, encoder_type):
++                if not (isinstance(obj, encoder_type)):
+
+--------------------------------------------------------------------------------
+
+Mutant #053 - UOI - KILLED
+Description: Insert 'not' operator in condition at line 225
+Routine: jsonable_encoder
+--- original (line 225)
++++ mutant (line 225)
+-    if isinstance(obj, BaseModel):
++    if not (isinstance(obj, BaseModel)):
+
+--------------------------------------------------------------------------------
+
+Mutant #054 - UOI - KILLED
+Description: Insert 'not' operator in condition at line 241
+Routine: jsonable_encoder
+--- original (line 241)
++++ mutant (line 241)
+-    if dataclasses.is_dataclass(obj):
++    if not (dataclasses.is_dataclass(obj)):
+
+--------------------------------------------------------------------------------
+
+Mutant #055 - UOI - KILLED
+Description: Insert 'not' operator in condition at line 255
+Routine: jsonable_encoder
+--- original (line 255)
++++ mutant (line 255)
+-    if isinstance(obj, Enum):
++    if not (isinstance(obj, Enum)):
+
+--------------------------------------------------------------------------------
+
+Mutant #056 - UOI - KILLED
+Description: Insert 'not' operator in condition at line 257
+Routine: jsonable_encoder
+--- original (line 257)
++++ mutant (line 257)
+-    if isinstance(obj, PurePath):
++    if not (isinstance(obj, PurePath)):
+
+--------------------------------------------------------------------------------
+
+Mutant #057 - UOI - KILLED
+Description: Insert 'not' operator in condition at line 259
+Routine: jsonable_encoder
+--- original (line 259)
++++ mutant (line 259)
+-    if isinstance(obj, (str, int, float, type(None))):
++    if not (isinstance(obj, (str, int, float, type(None)))):
+
+--------------------------------------------------------------------------------
+
+Mutant #058 - UOI - KILLED
+Description: Insert 'not' operator in condition at line 261
+Routine: jsonable_encoder
+--- original (line 261)
++++ mutant (line 261)
+-    if isinstance(obj, PydanticUndefinedType):
++    if not (isinstance(obj, PydanticUndefinedType)):
+
+--------------------------------------------------------------------------------
+
+Mutant #059 - UOI - KILLED
+Description: Insert 'not' operator in condition at line 263
+Routine: jsonable_encoder
+--- original (line 263)
++++ mutant (line 263)
+-    if isinstance(obj, dict):
++    if not (isinstance(obj, dict)):
+
+--------------------------------------------------------------------------------
+
+Mutant #060 - UOI - KILLED
+Description: Insert 'not' operator in condition at line 298
+Routine: jsonable_encoder
+--- original (line 298)
++++ mutant (line 298)
+-    if isinstance(obj, (list, set, frozenset, GeneratorType, tuple, deque)):
++    if not (isinstance(obj, (list, set, frozenset, GeneratorType, tuple, deque))):
+
+--------------------------------------------------------------------------------
+
+Mutant #061 - UOI - KILLED
+Description: Insert 'not' operator in condition at line 316
+Routine: jsonable_encoder
+--- original (line 316)
++++ mutant (line 316)
+-    if type(obj) in ENCODERS_BY_TYPE:
++    if not (type(obj) in ENCODERS_BY_TYPE):
+
+--------------------------------------------------------------------------------
+
+Mutant #062 - UOI - KILLED
+Description: Insert 'not' operator in condition at line 319
+Routine: jsonable_encoder
+--- original (line 319)
++++ mutant (line 319)
+-        if isinstance(obj, classes_tuple):
++        if not (isinstance(obj, classes_tuple)):
+
+--------------------------------------------------------------------------------
+
+Mutant #063 - UOI - KILLED
+Description: Insert 'not' operator in condition at line 321
+Routine: jsonable_encoder
+--- original (line 321)
++++ mutant (line 321)
+-    if is_pydantic_v1_model_instance(obj):
++    if not (is_pydantic_v1_model_instance(obj)):
+
+--------------------------------------------------------------------------------
+
+Mutant #064 - RIL - KILLED
+Description: Replace return value with None at line 37
+Routine: isoformat
+--- original (line 37)
++++ mutant (line 37)
+-    return o.isoformat()
++    return None
+
+--------------------------------------------------------------------------------
+
+Mutant #065 - RIL - KILLED
+Description: Replace return value with empty dict at line 37
+Routine: isoformat
+--- original (line 37)
++++ mutant (line 37)
+-    return o.isoformat()
++    return {}
+
+--------------------------------------------------------------------------------
+
+Mutant #066 - RIL - KILLED
+Description: Replace return value with empty list at line 37
+Routine: isoformat
+--- original (line 37)
++++ mutant (line 37)
+-    return o.isoformat()
++    return []
+
+--------------------------------------------------------------------------------
+
+Mutant #067 - RIL - KILLED
+Description: Replace return value with None at line 62
+Routine: decimal_encoder
+--- original (line 62)
++++ mutant (line 62)
+-        return int(dec_value)
++        return None
+
+--------------------------------------------------------------------------------
+
+Mutant #068 - RIL - KILLED
+Description: Replace return value with empty dict at line 62
+Routine: decimal_encoder
+--- original (line 62)
++++ mutant (line 62)
+-        return int(dec_value)
++        return {}
+
+--------------------------------------------------------------------------------
+
+Mutant #069 - RIL - KILLED
+Description: Replace return value with empty list at line 62
+Routine: decimal_encoder
+--- original (line 62)
++++ mutant (line 62)
+-        return int(dec_value)
++        return []
+
+--------------------------------------------------------------------------------
+
+Mutant #070 - RIL - KILLED
+Description: Replace return value with None at line 64
+Routine: decimal_encoder
+--- original (line 64)
++++ mutant (line 64)
+-        return float(dec_value)
++        return None
+
+--------------------------------------------------------------------------------
+
+Mutant #071 - RIL - KILLED
+Description: Replace return value with empty dict at line 64
+Routine: decimal_encoder
+--- original (line 64)
++++ mutant (line 64)
+-        return float(dec_value)
++        return {}
+
+--------------------------------------------------------------------------------
+
+Mutant #072 - RIL - KILLED
+Description: Replace return value with empty list at line 64
+Routine: decimal_encoder
+--- original (line 64)
++++ mutant (line 64)
+-        return float(dec_value)
++        return []
+
+--------------------------------------------------------------------------------
+
+Mutant #073 - RIL - KILLED
+Description: Replace return value with None at line 105
+Routine: generate_encoders_by_class_tuples
+--- original (line 105)
++++ mutant (line 105)
+-    return encoders_by_class_tuples
++    return None
+
+--------------------------------------------------------------------------------
+
+Mutant #074 - RIL - KILLED
+Description: Replace return value with empty dict at line 105
+Routine: generate_encoders_by_class_tuples
+--- original (line 105)
++++ mutant (line 105)
+-    return encoders_by_class_tuples
++    return {}
+
+--------------------------------------------------------------------------------
+
+Mutant #075 - RIL - KILLED
+Description: Replace return value with empty list at line 105
+Routine: generate_encoders_by_class_tuples
+--- original (line 105)
++++ mutant (line 105)
+-    return encoders_by_class_tuples
++    return []
+
+--------------------------------------------------------------------------------
+
+Mutant #076 - RIL - KILLED
+Description: Replace return value with None at line 216
+Routine: jsonable_encoder
+--- original (line 216)
++++ mutant (line 216)
+-            return custom_encoder[type(obj)](obj)
++            return None
+
+--------------------------------------------------------------------------------
+
+Mutant #077 - RIL - KILLED
+Description: Replace return value with empty dict at line 216
+Routine: jsonable_encoder
+--- original (line 216)
++++ mutant (line 216)
+-            return custom_encoder[type(obj)](obj)
++            return {}
+
+--------------------------------------------------------------------------------
+
+Mutant #078 - RIL - KILLED
+Description: Replace return value with empty list at line 216
+Routine: jsonable_encoder
+--- original (line 216)
++++ mutant (line 216)
+-            return custom_encoder[type(obj)](obj)
++            return []
+
+--------------------------------------------------------------------------------
+
+Mutant #079 - RIL - KILLED
+Description: Replace return value with None at line 220
+Routine: jsonable_encoder
+--- original (line 220)
++++ mutant (line 220)
+-                    return encoder_instance(obj)
++                    return None
+
+--------------------------------------------------------------------------------
+
+Mutant #080 - RIL - KILLED
+Description: Replace return value with empty dict at line 220
+Routine: jsonable_encoder
+--- original (line 220)
++++ mutant (line 220)
+-                    return encoder_instance(obj)
++                    return {}
+
+--------------------------------------------------------------------------------
+
+Mutant #081 - RIL - KILLED
+Description: Replace return value with empty list at line 220
+Routine: jsonable_encoder
+--- original (line 220)
++++ mutant (line 220)
+-                    return encoder_instance(obj)
++                    return []
+
+--------------------------------------------------------------------------------
+
+Mutant #082 - RIL - KILLED
+Description: Replace return value with None at line 235
+Routine: jsonable_encoder
+--- original (line 235)
++++ mutant (line 235)
+-        return jsonable_encoder(
++        return None
+
+--------------------------------------------------------------------------------
+
+Mutant #083 - RIL - KILLED
+Description: Replace return value with empty dict at line 235
+Routine: jsonable_encoder
+--- original (line 235)
++++ mutant (line 235)
+-        return jsonable_encoder(
++        return {}
+
+--------------------------------------------------------------------------------
+
+Mutant #084 - RIL - KILLED
+Description: Replace return value with empty list at line 235
+Routine: jsonable_encoder
+--- original (line 235)
++++ mutant (line 235)
+-        return jsonable_encoder(
++        return []
+
+--------------------------------------------------------------------------------
+
+Mutant #085 - RIL - KILLED
+Description: Replace return value with None at line 244
+Routine: jsonable_encoder
+--- original (line 244)
++++ mutant (line 244)
+-        return jsonable_encoder(
++        return None
+
+--------------------------------------------------------------------------------
+
+Mutant #086 - RIL - KILLED
+Description: Replace return value with empty dict at line 244
+Routine: jsonable_encoder
+--- original (line 244)
++++ mutant (line 244)
+-        return jsonable_encoder(
++        return {}
+
+--------------------------------------------------------------------------------
+
+Mutant #087 - RIL - KILLED
+Description: Replace return value with empty list at line 244
+Routine: jsonable_encoder
+--- original (line 244)
++++ mutant (line 244)
+-        return jsonable_encoder(
++        return []
+
+--------------------------------------------------------------------------------
+
+Mutant #088 - RIL - KILLED
+Description: Replace return value with None at line 256
+Routine: jsonable_encoder
+--- original (line 256)
++++ mutant (line 256)
+-        return obj.value
++        return None
+
+--------------------------------------------------------------------------------
+
+Mutant #089 - RIL - KILLED
+Description: Replace return value with empty dict at line 256
+Routine: jsonable_encoder
+--- original (line 256)
++++ mutant (line 256)
+-        return obj.value
++        return {}
+
+--------------------------------------------------------------------------------
+
+Mutant #090 - RIL - KILLED
+Description: Replace return value with empty list at line 256
+Routine: jsonable_encoder
+--- original (line 256)
++++ mutant (line 256)
+-        return obj.value
++        return []
+
+--------------------------------------------------------------------------------
+
+Mutant #091 - RIL - KILLED
+Description: Replace return value with None at line 258
+Routine: jsonable_encoder
+--- original (line 258)
++++ mutant (line 258)
+-        return str(obj)
++        return None
+
+--------------------------------------------------------------------------------
+
+Mutant #092 - RIL - KILLED
+Description: Replace return value with empty dict at line 258
+Routine: jsonable_encoder
+--- original (line 258)
++++ mutant (line 258)
+-        return str(obj)
++        return {}
+
+--------------------------------------------------------------------------------
+
+Mutant #093 - RIL - KILLED
+Description: Replace return value with empty list at line 258
+Routine: jsonable_encoder
+--- original (line 258)
++++ mutant (line 258)
+-        return str(obj)
++        return []
+
+--------------------------------------------------------------------------------
+
+Mutant #094 - RIL - KILLED
+Description: Replace return value with None at line 260
+Routine: jsonable_encoder
+--- original (line 260)
++++ mutant (line 260)
+-        return obj
++        return None
+
+--------------------------------------------------------------------------------
+
+Mutant #095 - RIL - KILLED
+Description: Replace return value with empty dict at line 260
+Routine: jsonable_encoder
+--- original (line 260)
++++ mutant (line 260)
+-        return obj
++        return {}
+
+--------------------------------------------------------------------------------
+
+Mutant #096 - RIL - KILLED
+Description: Replace return value with empty list at line 260
+Routine: jsonable_encoder
+--- original (line 260)
++++ mutant (line 260)
+-        return obj
++        return []
+
+--------------------------------------------------------------------------------
+
+Mutant #097 - RIL - KILLED
+Description: Replace return value with None at line 297
+Routine: jsonable_encoder
+--- original (line 297)
++++ mutant (line 297)
+-        return encoded_dict
++        return None
+
+--------------------------------------------------------------------------------
+
+Mutant #098 - RIL - KILLED
+Description: Replace return value with empty dict at line 297
+Routine: jsonable_encoder
+--- original (line 297)
++++ mutant (line 297)
+-        return encoded_dict
++        return {}
+
+--------------------------------------------------------------------------------
+
+Mutant #099 - RIL - KILLED
+Description: Replace return value with empty list at line 297
+Routine: jsonable_encoder
+--- original (line 297)
++++ mutant (line 297)
+-        return encoded_dict
++        return []
+
+--------------------------------------------------------------------------------
+
+Mutant #100 - RIL - KILLED
+Description: Replace return value with None at line 314
+Routine: jsonable_encoder
+--- original (line 314)
++++ mutant (line 314)
+-        return encoded_list
++        return None
+
+--------------------------------------------------------------------------------
+
+Mutant #101 - RIL - KILLED
+Description: Replace return value with empty dict at line 314
+Routine: jsonable_encoder
+--- original (line 314)
++++ mutant (line 314)
+-        return encoded_list
++        return {}
+
+--------------------------------------------------------------------------------
+
+Mutant #102 - RIL - KILLED
+Description: Replace return value with empty list at line 314
+Routine: jsonable_encoder
+--- original (line 314)
++++ mutant (line 314)
+-        return encoded_list
++        return []
+
+--------------------------------------------------------------------------------
+
+Mutant #103 - RIL - KILLED
+Description: Replace return value with None at line 317
+Routine: jsonable_encoder
+--- original (line 317)
++++ mutant (line 317)
+-        return ENCODERS_BY_TYPE[type(obj)](obj)
++        return None
+
+--------------------------------------------------------------------------------
+
+Mutant #104 - RIL - KILLED
+Description: Replace return value with empty dict at line 317
+Routine: jsonable_encoder
+--- original (line 317)
++++ mutant (line 317)
+-        return ENCODERS_BY_TYPE[type(obj)](obj)
++        return {}
+
+--------------------------------------------------------------------------------
+
+Mutant #105 - RIL - KILLED
+Description: Replace return value with empty list at line 317
+Routine: jsonable_encoder
+--- original (line 317)
++++ mutant (line 317)
+-        return ENCODERS_BY_TYPE[type(obj)](obj)
++        return []
+
+--------------------------------------------------------------------------------
+
+Mutant #106 - RIL - KILLED
+Description: Replace return value with None at line 320
+Routine: jsonable_encoder
+--- original (line 320)
++++ mutant (line 320)
+-            return encoder(obj)
++            return None
+
+--------------------------------------------------------------------------------
+
+Mutant #107 - RIL - KILLED
+Description: Replace return value with empty dict at line 320
+Routine: jsonable_encoder
+--- original (line 320)
++++ mutant (line 320)
+-            return encoder(obj)
++            return {}
+
+--------------------------------------------------------------------------------
+
+Mutant #108 - RIL - KILLED
+Description: Replace return value with empty list at line 320
+Routine: jsonable_encoder
+--- original (line 320)
++++ mutant (line 320)
+-            return encoder(obj)
++            return []
+
+--------------------------------------------------------------------------------
+
+Mutant #109 - RIL - KILLED
+Description: Replace return value with None at line 336
+Routine: jsonable_encoder
+--- original (line 336)
++++ mutant (line 336)
+-    return jsonable_encoder(
++    return None
+
+--------------------------------------------------------------------------------
+
+Mutant #110 - RIL - KILLED
+Description: Replace return value with empty dict at line 336
+Routine: jsonable_encoder
+--- original (line 336)
++++ mutant (line 336)
+-    return jsonable_encoder(
++    return {}
+
+--------------------------------------------------------------------------------
+
+Mutant #111 - RIL - KILLED
+Description: Replace return value with empty list at line 336
+Routine: jsonable_encoder
+--- original (line 336)
++++ mutant (line 336)
+-    return jsonable_encoder(
++    return []
+
+--------------------------------------------------------------------------------
+
+Mutant #112 - MSI - KILLED
+Description: Replace '.items()' with '.keys()' at line 103
+Routine: generate_encoders_by_class_tuples
+--- original (line 103)
++++ mutant (line 103)
+-    for type_, encoder in type_encoder_map.items():
++    for type_, encoder in type_encoder_map.keys():
+--------------------------------------------------------------------------------
+
+Mutant #113 - MSI - KILLED
+Description: Replace '.items()' with '.keys()' at line 218
+Routine: jsonable_encoder
+--- original (line 218)
++++ mutant (line 218)
+-            for encoder_type, encoder_instance in custom_encoder.items():
++            for encoder_type, encoder_instance in custom_encoder.keys():
+--------------------------------------------------------------------------------
+
+Mutant #114 - MSI - KILLED
+Description: Replace '.model_dump(' with '.model_dump_json(' at line 226
+Routine: jsonable_encoder
+--- original (line 226)
++++ mutant (line 226)
+-        obj_dict = obj.model_dump(
++        obj_dict = obj.model_dump_json(
+--------------------------------------------------------------------------------
+
+Mutant #115 - MSI - KILLED
+Description: Replace '.asdict(' with '.astuple(' at line 243
+Routine: jsonable_encoder
+--- original (line 243)
++++ mutant (line 243)
+-        obj_dict = dataclasses.asdict(obj)
++        obj_dict = dataclasses.astuple(obj)
+--------------------------------------------------------------------------------
+
+Mutant #116 - MSI - KILLED
+Description: Replace '.keys()' with '.values()' at line 265
+Routine: jsonable_encoder
+--- original (line 265)
++++ mutant (line 265)
+-        allowed_keys = set(obj.keys())
++        allowed_keys = set(obj.values())
+--------------------------------------------------------------------------------
+
+Mutant #117 - MSI - KILLED
+Description: Replace '.items()' with '.keys()' at line 270
+Routine: jsonable_encoder
+--- original (line 270)
++++ mutant (line 270)
+-        for key, value in obj.items():
++        for key, value in obj.keys():
+--------------------------------------------------------------------------------
+
+Mutant #118 - MSI - KILLED
+Description: Replace '.append(' with '.insert(0, ' at line 301
+Routine: jsonable_encoder
+--- original (line 301)
++++ mutant (line 301)
+-            encoded_list.append(
++            encoded_list.insert(0, 
+--------------------------------------------------------------------------------
+
+Mutant #119 - MSI - KILLED
+Description: Replace '.items()' with '.keys()' at line 318
+Routine: jsonable_encoder
+--- original (line 318)
++++ mutant (line 318)
+-    for encoder, classes_tuple in encoders_by_class_tuples.items():
++    for encoder, classes_tuple in encoders_by_class_tuples.keys():
+--------------------------------------------------------------------------------
+
+Mutant #120 - MSI - KILLED
+Description: Replace '.append(' with '.insert(0, ' at line 330
+Routine: jsonable_encoder
+--- original (line 330)
++++ mutant (line 330)
+-        errors.append(e)
++        errors.insert(0, e)
+--------------------------------------------------------------------------------
+
+Mutant #121 - MSI - KILLED
+Description: Replace '.append(' with '.insert(0, ' at line 334
+Routine: jsonable_encoder
+--- original (line 334)
++++ mutant (line 334)
+-            errors.append(e)
++            errors.insert(0, e)
+--------------------------------------------------------------------------------
+
+Mutant #122 - IOD - SURVIVED
+Description: Replace 'in' with 'not in' at line 48
+Routine: decimal_encoder
+--- original (line 48)
++++ mutant (line 48)
+-    results in failed round-tripping between encode and parse.
++    results not in failed round-tripping between encode and parse.
+--------------------------------------------------------------------------------
+
+Mutant #123 - IOD - SURVIVED
+Description: Replace 'in' with 'not in' at line 145
+Routine: jsonable_encoder
+--- original (line 145)
++++ mutant (line 145)
+-            want to use it in the result, so you probably want to leave this set to
++            want to use it not in the result, so you probably want to leave this set to
+--------------------------------------------------------------------------------
+
+Mutant #124 - IOD - SURVIVED
+Description: Replace 'in' with 'not in' at line 195
+Routine: jsonable_encoder
+--- original (line 195)
++++ mutant (line 195)
+-            store internal SQLAlchemy-specific state in attributes named with `_sa`,
++            store internal SQLAlchemy-specific state not in attributes named with `_sa`,
+--------------------------------------------------------------------------------
+
+Mutant #125 - IOD - SURVIVED
+Description: Replace 'in' with 'not in' at line 202
+Routine: jsonable_encoder
+--- original (line 202)
++++ mutant (line 202)
+-    Convert any object to something that can be encoded in JSON.
++    Convert any object to something that can be encoded not in JSON.
+--------------------------------------------------------------------------------
+
+Mutant #126 - IOD - SURVIVED
+Description: Replace 'in' with 'not in' at line 208
+Routine: jsonable_encoder
+--- original (line 208)
++++ mutant (line 208)
+-    in a database that supports only JSON.
++    not in a database that supports only JSON.
+--------------------------------------------------------------------------------
+
+Mutant #127 - IOD - SURVIVED
+Description: Replace 'in' with 'not in' at line 210
+Routine: jsonable_encoder
+--- original (line 210)
++++ mutant (line 210)
+-    Read more about it in the
++    Read more about it not in the
+--------------------------------------------------------------------------------
+
+Mutant #128 - IOD - KILLED
+Description: Replace 'in' with 'not in' at line 215
+Routine: jsonable_encoder
+--- original (line 215)
++++ mutant (line 215)
+-        if type(obj) in custom_encoder:
++        if type(obj) not in custom_encoder:
+--------------------------------------------------------------------------------
+
+Mutant #129 - IOD - KILLED
+Description: Replace 'in' with 'not in' at line 278
+Routine: jsonable_encoder
+--- original (line 278)
++++ mutant (line 278)
+-                and key in allowed_keys
++                and key not in allowed_keys
+--------------------------------------------------------------------------------
+
+Mutant #130 - IOD - KILLED
+Description: Replace 'in' with 'not in' at line 316
+Routine: jsonable_encoder
+--- original (line 316)
++++ mutant (line 316)
+-    if type(obj) in ENCODERS_BY_TYPE:
++    if type(obj) not in ENCODERS_BY_TYPE:
+--------------------------------------------------------------------------------
+
+Mutant #131 - TYP - KILLED
+Description: Negate type check 'isinstance(' at line 61
+Routine: decimal_encoder
+--- original (line 61)
++++ mutant (line 61)
+-    if isinstance(exponent, int) and exponent >= 0:
++    if not isinstance(exponent, int) and exponent >= 0:
+--------------------------------------------------------------------------------
+
+Mutant #132 - TYP - KILLED
+Description: Negate type check 'type(' at line 215
+Routine: jsonable_encoder
+--- original (line 215)
++++ mutant (line 215)
+-        if type(obj) in custom_encoder:
++        if str(type(obj) in custom_encoder:
+--------------------------------------------------------------------------------
+
+Mutant #133 - TYP - KILLED
+Description: Negate type check 'type(' at line 216
+Routine: jsonable_encoder
+--- original (line 216)
++++ mutant (line 216)
+-            return custom_encoder[type(obj)](obj)
++            return custom_encoder[str(type(obj)](obj)
+--------------------------------------------------------------------------------
+
+Mutant #134 - TYP - KILLED
+Description: Negate type check 'isinstance(' at line 219
+Routine: jsonable_encoder
+--- original (line 219)
++++ mutant (line 219)
+-                if isinstance(obj, encoder_type):
++                if not isinstance(obj, encoder_type):
+--------------------------------------------------------------------------------
+
+Mutant #135 - TYP - KILLED
+Description: Negate type check 'isinstance(' at line 225
+Routine: jsonable_encoder
+--- original (line 225)
++++ mutant (line 225)
+-    if isinstance(obj, BaseModel):
++    if not isinstance(obj, BaseModel):
+--------------------------------------------------------------------------------
+
+Mutant #136 - TYP - KILLED
+Description: Negate type check 'is_dataclass(' at line 241
+Routine: jsonable_encoder
+--- original (line 241)
++++ mutant (line 241)
+-    if dataclasses.is_dataclass(obj):
++    if dataclasses.not is_dataclass(obj):
+--------------------------------------------------------------------------------
+
+Mutant #137 - TYP - KILLED
+Description: Negate type check 'isinstance(' at line 255
+Routine: jsonable_encoder
+--- original (line 255)
++++ mutant (line 255)
+-    if isinstance(obj, Enum):
++    if not isinstance(obj, Enum):
+--------------------------------------------------------------------------------
+
+Mutant #138 - TYP - KILLED
+Description: Negate type check 'isinstance(' at line 257
+Routine: jsonable_encoder
+--- original (line 257)
++++ mutant (line 257)
+-    if isinstance(obj, PurePath):
++    if not isinstance(obj, PurePath):
+--------------------------------------------------------------------------------
+
+Mutant #139 - TYP - KILLED
+Description: Negate type check 'isinstance(' at line 259
+Routine: jsonable_encoder
+--- original (line 259)
++++ mutant (line 259)
+-    if isinstance(obj, (str, int, float, type(None))):
++    if not isinstance(obj, (str, int, float, type(None))):
+--------------------------------------------------------------------------------
+
+Mutant #140 - TYP - KILLED
+Description: Negate type check 'type(' at line 259
+Routine: jsonable_encoder
+--- original (line 259)
++++ mutant (line 259)
+-    if isinstance(obj, (str, int, float, type(None))):
++    if isinstance(obj, (str, int, float, str(type(None))):
+--------------------------------------------------------------------------------
+
+Mutant #141 - TYP - KILLED
+Description: Negate type check 'isinstance(' at line 261
+Routine: jsonable_encoder
+--- original (line 261)
++++ mutant (line 261)
+-    if isinstance(obj, PydanticUndefinedType):
++    if not isinstance(obj, PydanticUndefinedType):
+--------------------------------------------------------------------------------
+
+Mutant #142 - TYP - KILLED
+Description: Negate type check 'isinstance(' at line 263
+Routine: jsonable_encoder
+--- original (line 263)
++++ mutant (line 263)
+-    if isinstance(obj, dict):
++    if not isinstance(obj, dict):
+--------------------------------------------------------------------------------
+
+Mutant #143 - TYP - KILLED
+Description: Negate type check 'isinstance(' at line 298
+Routine: jsonable_encoder
+--- original (line 298)
++++ mutant (line 298)
+-    if isinstance(obj, (list, set, frozenset, GeneratorType, tuple, deque)):
++    if not isinstance(obj, (list, set, frozenset, GeneratorType, tuple, deque)):
+--------------------------------------------------------------------------------
+
+Mutant #144 - TYP - KILLED
+Description: Negate type check 'type(' at line 316
+Routine: jsonable_encoder
+--- original (line 316)
++++ mutant (line 316)
+-    if type(obj) in ENCODERS_BY_TYPE:
++    if str(type(obj) in ENCODERS_BY_TYPE:
+--------------------------------------------------------------------------------
+
+Mutant #145 - TYP - KILLED
+Description: Negate type check 'type(' at line 317
+Routine: jsonable_encoder
+--- original (line 317)
++++ mutant (line 317)
+-        return ENCODERS_BY_TYPE[type(obj)](obj)
++        return ENCODERS_BY_TYPE[str(type(obj)](obj)
+--------------------------------------------------------------------------------
+
+Mutant #146 - TYP - KILLED
+Description: Negate type check 'isinstance(' at line 319
+Routine: jsonable_encoder
+--- original (line 319)
++++ mutant (line 319)
+-        if isinstance(obj, classes_tuple):
++        if not isinstance(obj, classes_tuple):
+--------------------------------------------------------------------------------
+
+Mutant #147 - DCI - KILLED
+Description: Replace '&=' with '|=' at line 267
+Routine: jsonable_encoder
+--- original (line 267)
++++ mutant (line 267)
+-            allowed_keys &= set(include)
++            allowed_keys |= set(include)
+--------------------------------------------------------------------------------
+
+Mutant #148 - DCI - KILLED
+Description: Replace '-=' with '+=' at line 269
+Routine: jsonable_encoder
+--- original (line 269)
++++ mutant (line 269)
+-            allowed_keys -= set(exclude)
++            allowed_keys += set(exclude)
+--------------------------------------------------------------------------------
+
+Mutant #149 - FCR - KILLED
+Description: Replace 'tuple(' with 'list(' at line 60
+Routine: decimal_encoder
+--- original (line 60)
++++ mutant (line 60)
+-    exponent = dec_value.as_tuple().exponent
++    exponent = dec_value.as_list().exponent
+--------------------------------------------------------------------------------
+
+Mutant #150 - FCR - KILLED
+Description: Replace 'int(' with 'float(' at line 62
+Routine: decimal_encoder
+--- original (line 62)
++++ mutant (line 62)
+-        return int(dec_value)
++        return float(dec_value)
+--------------------------------------------------------------------------------
+
+Mutant #151 - FCR - KILLED
+Description: Replace 'float(' with 'int(' at line 64
+Routine: decimal_encoder
+--- original (line 64)
++++ mutant (line 64)
+-        return float(dec_value)
++        return int(dec_value)
+--------------------------------------------------------------------------------
+
+Mutant #152 - FCR - KILLED
+Description: Replace 'dict(' with 'list(' at line 100
+Routine: generate_encoders_by_class_tuples
+--- original (line 100)
++++ mutant (line 100)
+-    encoders_by_class_tuples: dict[Callable[[Any], Any], tuple[Any, ...]] = defaultdict(
++    encoders_by_class_tuples: dict[Callable[[Any], Any], tuple[Any, ...]] = defaultlist(
+--------------------------------------------------------------------------------
+
+Mutant #153 - FCR - KILLED
+Description: Replace 'set(' with 'frozenset(' at line 222
+Routine: jsonable_encoder
+--- original (line 222)
++++ mutant (line 222)
+-        include = set(include)
++        include = frozenset(include)
+--------------------------------------------------------------------------------
+
+Mutant #154 - FCR - KILLED
+Description: Replace 'set(' with 'frozenset(' at line 224
+Routine: jsonable_encoder
+--- original (line 224)
++++ mutant (line 224)
+-        exclude = set(exclude)
++        exclude = frozenset(exclude)
+--------------------------------------------------------------------------------
+
+Mutant #155 - FCR - KILLED
+Description: Replace 'dict(' with 'list(' at line 243
+Routine: jsonable_encoder
+--- original (line 243)
++++ mutant (line 243)
+-        obj_dict = dataclasses.asdict(obj)
++        obj_dict = dataclasses.aslist(obj)
+--------------------------------------------------------------------------------
+
+Mutant #156 - FCR - KILLED
+Description: Replace 'str(' with 'repr(' at line 258
+Routine: jsonable_encoder
+--- original (line 258)
++++ mutant (line 258)
+-        return str(obj)
++        return repr(obj)
+--------------------------------------------------------------------------------
+
+Mutant #157 - FCR - KILLED
+Description: Replace 'set(' with 'frozenset(' at line 265
+Routine: jsonable_encoder
+--- original (line 265)
++++ mutant (line 265)
+-        allowed_keys = set(obj.keys())
++        allowed_keys = frozenset(obj.keys())
+--------------------------------------------------------------------------------
+
+Mutant #158 - FCR - KILLED
+Description: Replace 'set(' with 'frozenset(' at line 267
+Routine: jsonable_encoder
+--- original (line 267)
++++ mutant (line 267)
+-            allowed_keys &= set(include)
++            allowed_keys &= frozenset(include)
+--------------------------------------------------------------------------------
+
+Mutant #159 - FCR - KILLED
+Description: Replace 'set(' with 'frozenset(' at line 269
+Routine: jsonable_encoder
+--- original (line 269)
++++ mutant (line 269)
+-            allowed_keys -= set(exclude)
++            allowed_keys -= frozenset(exclude)
+--------------------------------------------------------------------------------
+
+Mutant #160 - FCR - KILLED
+Description: Replace 'dict(' with 'list(' at line 327
+Routine: jsonable_encoder
+--- original (line 327)
++++ mutant (line 327)
+-        data = dict(obj)
++        data = list(obj)
+--------------------------------------------------------------------------------
+
